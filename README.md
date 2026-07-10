@@ -1,1 +1,0 @@
-# rgomids.github.io
