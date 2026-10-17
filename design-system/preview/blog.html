@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark">
+<meta name="description" content="Modelo de listagem de artigos do design system Dark Engineering.">
+<title>Artigos — Dark Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens/tokens.css"><link rel="stylesheet" href="../components/components.css"><link rel="stylesheet" href="./preview.css">
+<script defer src="./preview.js"></script>
+</head>
+<body class="ds-app">
+<a class="ds-skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="ds-header"><div class="ds-container ds-header__inner">
+<a class="ds-brand" href="./index.html" aria-label="Dark Engineering — início"><span class="ds-brand__mark">RG<span class="ds-brand__dot">.</span></span><span class="ds-brand__hint">/ engineering notes</span></a>
+<nav class="ds-nav" aria-label="Principal"><button type="button" class="ds-nav__toggle" data-menu-button aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button>
+<div class="ds-nav__links" id="menu-principal" data-menu-panel data-open="false"><a class="ds-nav__link" href="./index.html">Sistema</a><a class="ds-nav__link" href="./projects.html">Projetos</a><a class="ds-nav__link" aria-current="page" href="./blog.html">Artigos</a><a class="ds-nav__link ds-nav__link--accent" href="/axion/">Axion ↗</a></div></nav>
+</div></header>
+<main id="conteudo">
+<section class="demo-page-intro"><div class="ds-container"><span class="ds-eyebrow">Writing / index</span><h1>Engineering <span class="ds-highlight">notes.</span></h1><p>Reflexões sobre backend, arquitetura, cloud e desenvolvimento com IA. Este conteúdo é ilustrativo; nenhum artigo foi publicado.</p><div class="ds-row"><span class="ds-chip">Backend</span><span class="ds-chip">Architecture</span><span class="ds-chip">Cloud</span><span class="ds-chip">AI Engineering</span></div></div></section>
+<section class="ds-section"><div class="ds-container">
+<div class="ds-section__top"><div><span class="ds-eyebrow">01 / journal</span><h2 class="ds-section__title">Todos os artigos</h2><p class="ds-section__desc">Pesquise por título, descrição ou assunto. Filtros e busca são funcionais nesta demonstração.</p></div><span class="ds-caption" data-post-count aria-live="polite">5 artigos encontrados</span></div>
+<div class="demo-search"><div><label class="ds-field__label" for="buscar-artigos">Buscar artigos</label><input class="ds-input" type="search" id="buscar-artigos" data-post-search placeholder="Observabilidade, Go, agentes..." autocomplete="off"></div><span class="ds-caption">Exemplos / não publicados</span></div>
+<div class="demo-filter" role="group" aria-label="Filtrar por assunto">
+<button type="button" data-post-filter="all" aria-pressed="true">Todos</button>
+<button type="button" data-post-filter="backend" aria-pressed="false">Backend</button>
+<button type="button" data-post-filter="architecture" aria-pressed="false">Arquitetura</button>
+<button type="button" data-post-filter="cloud" aria-pressed="false">Cloud</button>
+<button type="button" data-post-filter="ai" aria-pressed="false">IA</button>
+</div>
+<div class="ds-post-list">
+<a href="./article.html" class="ds-post-item" data-post data-tags="architecture,ai"><time class="ds-post-item__date" datetime="2026-10-01">EXEMPLO · 8 min</time><div><h3 class="ds-post-item__title">Da issue ao agente: uma arquitetura para desenvolver com IA</h3><p class="ds-post-item__excerpt">Como organizar contexto, responsabilidades e limites em fluxos de desenvolvimento assistidos por agentes.</p><div class="ds-row"><span class="ds-chip">Architecture</span><span class="ds-chip">AI Engineering</span></div></div><span class="ds-post-item__arrow">↗</span></a>
+<a href="./article.html" class="ds-post-item" data-post data-tags="backend,cloud"><span class="ds-post-item__date">EXEMPLO · 6 min</span><div><h3 class="ds-post-item__title">Observabilidade em serviços Go: do log ao trace</h3><p class="ds-post-item__excerpt">Correlações, métricas e sinais úteis na operação de serviços distribuídos.</p><div class="ds-row"><span class="ds-chip">Go</span><span class="ds-chip">Cloud</span></div></div><span class="ds-post-item__arrow">↗</span></a>
+<a href="./article.html" class="ds-post-item" data-post data-tags="architecture,backend"><span class="ds-post-item__date">EXEMPLO · 10 min</span><div><h3 class="ds-post-item__title">Monólito modular antes de microsserviços</h3><p class="ds-post-item__excerpt">Trade-offs reais de fronteiras de domínio, deploy e evolução incremental.</p><div class="ds-row"><span class="ds-chip">Architecture</span><span class="ds-chip">DDD</span></div></div><span class="ds-post-item__arrow">↗</span></a>
+<a href="./article.html" class="ds-post-item" data-post data-tags="cloud,backend"><span class="ds-post-item__date">EXEMPLO · 7 min</span><div><h3 class="ds-post-item__title">Custos em arquiteturas serverless: onde olhar primeiro?</h3><p class="ds-post-item__excerpt">Um roteiro prático para otimizar custos sem sacrificar confiabilidade.</p><div class="ds-row"><span class="ds-chip">AWS</span><span class="ds-chip">Cloud</span></div></div><span class="ds-post-item__arrow">↗</span></a>
+<a href="./article.html" class="ds-post-item" data-post data-tags="ai,architecture"><span class="ds-post-item__date">EXEMPLO · 5 min</span><div><h3 class="ds-post-item__title">Governança de agentes: quando parar de decompor</h3><p class="ds-post-item__excerpt">Definição de pronto, limites de escopo e revisão humana como parte do processo.</p><div class="ds-row"><span class="ds-chip">AI Engineering</span><span class="ds-chip">Architecture</span></div></div><span class="ds-post-item__arrow">↗</span></a>
+</div>
+<p class="demo-empty" data-post-empty role="status" hidden>Nenhum artigo corresponde aos filtros. Tente outro termo.</p>
+</div></section>
+</main><footer class="ds-footer"><div class="ds-container ds-footer__inner"><span>RG. / Dark Engineering / v0.1.0</span><span>Demonstração de blog — conteúdo fictício</span><a href="./index.html">Voltar ao catálogo ↗</a></div></footer>
+</body></html>
