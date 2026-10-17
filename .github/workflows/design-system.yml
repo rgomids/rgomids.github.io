@@ -1,0 +1,23 @@
+name: Design system validation
+on:
+  pull_request:
+    paths:
+      - 'design-system/**'
+      - '.github/workflows/design-system.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'design-system/**'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate static design system
+        run: node design-system/scripts/validate.mjs
