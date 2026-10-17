@@ -88,8 +88,18 @@ Não é correto afirmar que plugins ou o ChatGPT são, por natureza, incapazes d
 
 ### Visão lógica dos componentes
 
-<div class="blog-diagram" data-diagram="1">
-<pre class="mermaid">flowchart LR
+<figure class="blog-diagram" data-diagram-widget aria-label="Arquitetura lógica dos componentes">
+  <div class="blog-diagram__toolbar" role="group" aria-label="Visualização do diagrama 1">
+    <button type="button" class="blog-diagram__tab" data-diagram-mode="visual" aria-pressed="true">Diagrama</button>
+    <button type="button" class="blog-diagram__tab" data-diagram-mode="code" aria-pressed="false">Código</button>
+    <button type="button" class="blog-diagram__copy" data-diagram-copy>Copiar código</button>
+    <span class="blog-diagram__status" data-diagram-status role="status" aria-live="polite"></span>
+  </div>
+  <div class="blog-diagram__visual" data-diagram-panel="visual" tabindex="0" role="region" aria-label="Diagrama — utilize rolagem horizontal para percorrer a imagem">
+    <img src="/assets/artigos/chatgpt-como-camada-de-preparacao/architecture.svg" loading="lazy" decoding="async" alt="Fluxograma da preparação no ChatGPT, publicação no Linear e coordenação pelo Grok Bot">
+  </div>
+  <div class="blog-diagram__code" data-diagram-panel="code" hidden>
+    <pre><code class="language-mermaid-source">flowchart LR
     U["Engenheiro"] --&gt;|"prepara e autoriza"| C["ChatGPT Project"]
     subgraph CP["Preparação e integração"]
         C --&gt; D["Plugin de domínio"]
@@ -104,8 +114,10 @@ Não é correto afirmar que plugins ou o ChatGPT são, por natureza, incapazes d
     X -. "estado e handoff, se necessário" .-&gt; B
     B --&gt;|"atualiza andamento"| L
     B --&gt;|"notifica conclusão"| U
-    U --&gt;|"revisa resultado"| R["Código ou artefato entregue"]</pre>
-</div>
+    U --&gt;|"revisa resultado"| R["Código ou artefato entregue"]</code></pre>
+  </div>
+  <figcaption>Arquitetura lógica dos componentes. <a href="/diagrams/article-chatgpt-architecture.mmd" download>Baixar fonte Mermaid</a>.</figcaption>
+</figure>
 
 *Visão lógica inspirada na separação de sistemas e responsabilidades do C4 Model. As setas expressam o comportamento relatado, não endpoints ou permissões confirmados. O caminho pelo ChatGPT Sites e a recuperação efetiva do conteúdo apontado pelo permalink ainda exigem validação do contrato implementado.*
 
@@ -127,8 +139,18 @@ A mudança prática não é deixar de pensar na tarefa: é **deixar de realizar 
 
 O diagrama dinâmico evidencia tanto a separação entre **disparo e entrega** quanto a possibilidade de continuidade entre agentes:
 
-<div class="blog-diagram" data-diagram="2">
-<pre class="mermaid">sequenceDiagram
+<figure class="blog-diagram" data-diagram-widget aria-label="Sequência de execução e handoff">
+  <div class="blog-diagram__toolbar" role="group" aria-label="Visualização do diagrama 2">
+    <button type="button" class="blog-diagram__tab" data-diagram-mode="visual" aria-pressed="true">Diagrama</button>
+    <button type="button" class="blog-diagram__tab" data-diagram-mode="code" aria-pressed="false">Código</button>
+    <button type="button" class="blog-diagram__copy" data-diagram-copy>Copiar código</button>
+    <span class="blog-diagram__status" data-diagram-status role="status" aria-live="polite"></span>
+  </div>
+  <div class="blog-diagram__visual" data-diagram-panel="visual" tabindex="0" role="region" aria-label="Diagrama — utilize rolagem horizontal para percorrer a imagem">
+    <img src="/assets/artigos/chatgpt-como-camada-de-preparacao/sequence.svg" loading="lazy" decoding="async" alt="Diagrama de sequência entre engenheiro, ChatGPT, Linear, Grok Bot, Codex e Claude Code">
+  </div>
+  <div class="blog-diagram__code" data-diagram-panel="code" hidden>
+    <pre><code class="language-mermaid-source">sequenceDiagram
     autonumber
     actor E as Engenheiro
     participant C as ChatGPT e plugin de domínio
@@ -159,8 +181,10 @@ O diagrama dinâmico evidencia tanto a separação entre **disparo e entrega** q
         A--&gt;&gt;B: Estado ou resultado
     end
     B--&gt;&gt;E: Notifica entrega pronta para revisão
-    E-&gt;&gt;E: Revisa código e decide sobre aceite</pre>
-</div>
+    E-&gt;&gt;E: Revisa código e decide sobre aceite</code></pre>
+  </div>
+  <figcaption>Sequência de execução e handoff. <a href="/diagrams/article-chatgpt-sequence.mmd" download>Baixar fonte Mermaid</a>.</figcaption>
+</figure>
 
 *Diagrama lógico do comportamento relatado; o handoff é condicional. Não atribui endpoints específicos à leitura do permalink nem comprova a forma de detecção do limite de sessão, a ordenação exata das mensagens ou o mecanismo de notificação. Esses detalhes dependem dos contratos efetivos.*
 

@@ -1,0 +1,46 @@
+name: Render article Mermaid SVGs
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - 'diagrams/**'
+      - '.github/workflows/render-article-diagrams.yml'
+  workflow_dispatch:
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Mermaid CLI
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: '1'
+        run: npm install --no-save --no-audit --no-fund @mermaid-js/mermaid-cli@11.17.0 puppeteer@24
+      - name: Render diagrams from committed Mermaid source
+        shell: bash
+        run: |
+          set -euo pipefail
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          printf '{"executablePath":"%s","args":["--no-sandbox","--disable-setuid-sandbox"]}\n' "$BROWSER" > diagrams/puppeteer.json
+          mkdir -p assets/artigos/chatgpt-como-camada-de-preparacao
+          npx mmdc -i diagrams/article-chatgpt-architecture.mmd -o assets/artigos/chatgpt-como-camada-de-preparacao/architecture.svg -c diagrams/theme.json -p diagrams/puppeteer.json -b '#151b18'
+          npx mmdc -i diagrams/article-chatgpt-sequence.mmd -o assets/artigos/chatgpt-como-camada-de-preparacao/sequence.svg -c diagrams/theme.json -p diagrams/puppeteer.json -b '#151b18'
+          test "$(grep -c '<svg' assets/artigos/chatgpt-como-camada-de-preparacao/architecture.svg)" -ge 1
+          test "$(grep -c '<svg' assets/artigos/chatgpt-como-camada-de-preparacao/sequence.svg)" -ge 1
+      - name: Commit verified SVG assets to PR branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/artigos/chatgpt-como-camada-de-preparacao/*.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "build(blog): generate static Mermaid SVG assets"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
