@@ -93,10 +93,29 @@ for (const filename of postFiles) {
     check(mermaidBlocks === 2, 'First article must contain two diagrams');
     check((articleBody.match(/data-diagram-widget/g) || []).length === 2,
       'Both diagrams must offer visual/code toggle');
-    for (const name of ['architecture', 'sequence']) {
+    const embeddedSources = [...articleBody.matchAll(
+      /<code class="language-mermaid-source">([\\s\\S]*?)<\\/code>/g
+    )].map(match => match[1]
+      .replace(/&gt;/g, '>')
+      .replace(/&lt;/g, '<')
+      .replace(/&amp;/g, '&').trim());
+    check(embeddedSources.length === 2, 'Both diagrams must expose a copyable source');
+    for (const [index, name] of ['architecture', 'sequence'].entries()) {
+      const source = 'diagrams/article-chatgpt-' + name + '.mmd';
+      const svg = 'assets/artigos/chatgpt-como-camada-de-preparacao/' + name + '.svg';
       check(articleBody.includes(name + '.svg'), 'Missing local SVG reference: ' + name);
       check(articleBody.includes('article-chatgpt-' + name + '.mmd'),
         'Missing original Mermaid source link: ' + name);
+      check(exists(source), 'Missing source Mermaid file: ' + source);
+      check(exists(svg), 'Missing compiled diagram: ' + svg);
+      if (exists(svg)) {
+        const xml = read(svg);
+        check(xml.includes('<svg') && xml.includes('</svg>'), 'Invalid SVG: ' + svg);
+      }
+      if (exists(source) && embeddedSources[index]) {
+        check(read(source).trim() === embeddedSources[index],
+          'Displayed diagram source differs from the compiled Mermaid source: ' + name);
+      }
     }
     check(articleBody.includes('flowchart LR') && articleBody.includes('sequenceDiagram'),
       'Expected Mermaid diagram definitions missing');
