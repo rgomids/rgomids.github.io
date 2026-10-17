@@ -99,7 +99,9 @@ flowchart LR
     B --> C["Grok Bot"]
 \`\`\`
 
-O renderizador opcional `/blog-mermaid.js` usa a versão fixa `mermaid@11.4.1`, com tema escuro e política `securityLevel: strict`. O navegador carrega o pacote externo **somente quando há diagrama** na página. Se o carregamento ou o diagrama falhar, o código-fonte continua visível no artigo, sem impedir a leitura.
+O renderizador opcional `/blog-mermaid.js` aceita tanto cercas Markdown `mermaid` quanto blocos HTML nativos `<pre class="mermaid">...</pre>`. O primeiro artigo usa os blocos nativos para evitar conflito com o destaque de sintaxe do Jekyll/Rouge. O JavaScript converte apenas os diagramas encontrados, usa uma versão fixa `mermaid@11.4.1`, tema escuro e `securityLevel: strict`, com uma CDN de contingência. Se o carregamento ou o diagrama falhar, o código-fonte continua legível.
+
+**Espaçamento editorial:** cada parágrafo do texto deve ser separado do seguinte por **uma linha em branco no Markdown**. Uma quebra de linha simples não inicia um novo parágrafo no Jekyll. Coloque também linhas em branco antes/depois de títulos, listas, blocos de código e diagramas. Não use elementos vazios ou múltiplas quebras artificiais de HTML para criar espaçamento: o estilo do blog cuida disso.
 
 ## Fluxo usado no primeiro artigo (Notion → Markdown → GitHub)
 

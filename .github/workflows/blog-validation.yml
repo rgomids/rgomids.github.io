@@ -68,4 +68,17 @@ jobs:
           grep -q 'ChatGPT como camada de preparação' _site/artigos/chatgpt-como-camada-de-preparacao/index.html
           ! grep -q 'Notas editoriais' _site/artigos/chatgpt-como-camada-de-preparacao/index.html
           ! grep -q 'Rascunho editorial' _site/artigos/chatgpt-como-camada-de-preparacao/index.html
-          grep -q 'language-mermaid' _site/artigos/chatgpt-como-camada-de-preparacao/index.html
+          # Verify the generated page is readable, not merely buildable.
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+            const html = readFileSync("_site/artigos/chatgpt-como-camada-de-preparacao/index.html", "utf8");
+            const diagrams = (html.match(/<pre class="mermaid">/g) || []).length;
+            const paragraphs = (html.match(/<p(?:\s[^>]*)?>/g) || []).length;
+            if (diagrams !== 2) throw Error("Expected 2 native Mermaid diagrams; got " + diagrams);
+            if (paragraphs < 45) throw Error("Collapsed article paragraphs: got " + paragraphs);
+            if (html.includes("Notas editoriais") || html.includes("discussion-urls=")) {
+              throw Error("Private Notion metadata leaked into article");
+            }
+            if (!html.includes("blog-mermaid.js")) throw Error("Missing Mermaid runtime in layout");
+            console.log("Rendered HTML verified: " + diagrams + " diagrams, " + paragraphs + " paragraphs");
+          '
