@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light dark">
   <meta name="description" content="Dark Engineering — design system do portfólio de Rafael Gomides.">
   <title>Dark Engineering — Design System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="../theme/theme.js"></script>
   <link rel="stylesheet" href="../tokens/tokens.css">
   <link rel="stylesheet" href="../components/components.css">
   <link rel="stylesheet" href="./preview.css">
@@ -20,7 +21,7 @@
     <div class="ds-container ds-header__inner">
       <a href="./index.html" class="ds-brand" aria-label="Dark Engineering — início"><span class="ds-brand__mark">RG<span class="ds-brand__dot">.</span></span><span class="ds-brand__hint">/ design-system</span></a>
       <nav class="ds-nav" aria-label="Principal">
-        <button class="ds-nav__toggle" type="button" data-menu-button aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button>
+        <button type="button" class="ds-theme-toggle" data-theme-toggle aria-label="Alternar tema" title="Alternar tema"><span class="ds-theme-toggle__icon" data-theme-icon aria-hidden="true">☀</span><span class="ds-theme-toggle__label" data-theme-label>Modo claro</span></button><button class="ds-nav__toggle" type="button" data-menu-button aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button>
         <div class="ds-nav__links" id="menu-principal" data-menu-panel data-open="false">
           <a class="ds-nav__link" aria-current="page" href="./index.html">Sistema</a>
           <a class="ds-nav__link" href="./projects.html">Projetos</a>
