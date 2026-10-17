@@ -96,7 +96,7 @@ Os tokens em `tokens/tokens.css` são a fonte de verdade. Não mantenha uma cóp
 4. Executar `node design-system/scripts/validate.mjs`.
 5. Abrir PR; só depois de aprovado integrar o design system na home, blog e páginas.
 
-A página independente do **Axiom fica fora do escopo**. A navegação usa `/axiom/` como rota **presumida** a partir do nome do repositório `rgomids/axiom`; o endereço publicado não pôde ser confirmado automaticamente e precisa de verificação manual.
+A página independente do **Axiom fica fora do escopo**. O repositório [`rgomids/axiom`](https://github.com/rgomids/axiom) declara `https://rafaelgomides.dev.br/axiom/` como site do projeto. A navegação mantém essa rota; este PR altera apenas a grafia e os projetos em destaque.
 
 ## Critérios de aprovação da v0.1
 
@@ -105,7 +105,7 @@ A página independente do **Axiom fica fora do escopo**. A navegação usa `/axi
 - [ ] Cards de projetos e lista de artigos aprovados
 - [ ] Experiência de leitura longa aprovada
 - [ ] Acessibilidade e responsividade revisadas
-- [ ] Rota pública correta do Axiom confirmada
+- [x] Rota `/axiom/` identificada como homepage declarada no repositório do Axiom
 
 A integração do portfólio consome `design-system/tokens/tokens.css` e `design-system/components/components.css`, adicionando `portfolio.css` (composição de página) e `portfolio.js` (navegação) na raiz. A publicação real de artigos e a eventual migração para Astro permanecem para uma etapa posterior.
 
