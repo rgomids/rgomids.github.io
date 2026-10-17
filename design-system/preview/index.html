@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Dark Engineering — design system do portfólio de Rafael Gomides.">
+  <title>Dark Engineering — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../components/components.css">
+  <link rel="stylesheet" href="./preview.css">
+  <script defer src="./preview.js"></script>
+</head>
+<body class="ds-app">
+  <a class="ds-skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="ds-header">
+    <div class="ds-container ds-header__inner">
+      <a href="./index.html" class="ds-brand" aria-label="Dark Engineering — início"><span class="ds-brand__mark">RG<span class="ds-brand__dot">.</span></span><span class="ds-brand__hint">/ design-system</span></a>
+      <nav class="ds-nav" aria-label="Principal">
+        <button class="ds-nav__toggle" type="button" data-menu-button aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button>
+        <div class="ds-nav__links" id="menu-principal" data-menu-panel data-open="false">
+          <a class="ds-nav__link" aria-current="page" href="./index.html">Sistema</a>
+          <a class="ds-nav__link" href="./projects.html">Projetos</a>
+          <a class="ds-nav__link" href="./blog.html">Artigos</a>
+          <a class="ds-nav__link ds-nav__link--accent" href="/axion/">Axion ↗</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="demo-hero">
+      <div class="ds-container demo-hero__inner">
+        <div>
+          <span class="ds-eyebrow">Design system / v0.1.0</span>
+          <h1 class="ds-display">Engineering with <span class="ds-highlight">intent.</span></h1>
+          <p class="ds-lead">Uma linguagem visual para software, arquitetura e ideias. Escura, técnica e editorial — sem parecer uma IDE fantasiada de site.</p>
+          <div class="demo-hero__actions">
+            <a class="ds-btn ds-btn--primary" href="#fundamentos">Explorar fundamentos ↘</a>
+            <a class="ds-btn ds-btn--secondary" href="./blog.html">Ver blog de exemplo ↗</a>
+          </div>
+          <div class="demo-hero__status">
+            <span class="ds-chip ds-chip--green">● Dark-first</span>
+            <span class="ds-chip">Framework agnostic</span>
+            <span class="ds-chip ds-chip--yellow">GitHub Pages ready</span>
+          </div>
+        </div>
+        <div class="demo-console" aria-label="Ilustração de terminal">
+          <div class="demo-console__top"><span class="demo-console__dot"></span><span class="demo-console__dot"></span><span class="demo-console__dot"></span><span class="demo-console__title">architecture.log</span></div>
+          <div class="demo-console__body">
+            <div><span class="demo-console__dim">~</span> $ cat principles.yaml</div>
+            <div><span class="demo-console__key">identity:</span> <span class="demo-console__value">dark-engineering</span></div>
+            <div><span class="demo-console__key">principles:</span></div>
+            <div>&nbsp; - readability_first</div>
+            <div>&nbsp; - technical_clarity</div>
+            <div>&nbsp; - accessible_by_default</div>
+            <div>&nbsp; - purposeful_motion</div>
+            <div><span class="demo-console__key">status:</span> <span class="demo-console__value">ready_to_review</span></div>
+            <div><span class="demo-console__dim">~</span> $ <span class="demo-console__cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="ds-section" id="fundamentos">
+      <div class="ds-container">
+        <div class="ds-section__top">
+          <div><span class="ds-eyebrow">01 / foundations</span><h2 class="ds-section__title">Paleta sem ruído.</h2><p class="ds-section__desc">Verde para identidade e interação; amarelo para ênfase pontual. Superfícies com contraste progressivo.</p></div>
+          <span class="ds-caption">Source: tokens/tokens.css</span>
+        </div>
+        <div class="demo-swatches">
+          <div class="demo-swatch"><div class="demo-swatch__color" style="background:#0b0f0e"></div><div class="demo-swatch__meta"><div class="demo-swatch__name">Background</div><div class="demo-swatch__hex">#0B0F0E</div></div></div>
+          <div class="demo-swatch"><div class="demo-swatch__color" style="background:#151b18"></div><div class="demo-swatch__meta"><div class="demo-swatch__name">Surface</div><div class="demo-swatch__hex">#151B18</div></div></div>
+          <div class="demo-swatch"><div class="demo-swatch__color" style="background:#a8d7b2"></div><div class="demo-swatch__meta"><div class="demo-swatch__name">Accent</div><div class="demo-swatch__hex">#A8D7B2</div></div></div>
+          <div class="demo-swatch"><div class="demo-swatch__color" style="background:#e6d67e"></div><div class="demo-swatch__meta"><div class="demo-swatch__name">Highlight</div><div class="demo-swatch__hex">#E6D67E</div></div></div>
+          <div class="demo-swatch"><div class="demo-swatch__color" style="background:#e9ede7"></div><div class="demo-swatch__meta"><div class="demo-swatch__name">Text</div><div class="demo-swatch__hex">#E9EDE7</div></div></div>
+          <div class="demo-swatch"><div class="demo-swatch__color" style="background:#a8b8ad"></div><div class="demo-swatch__meta"><div class="demo-swatch__name">Muted</div><div class="demo-swatch__hex">#A8B8AD</div></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="ds-section" id="tipografia">
+      <div class="ds-container">
+        <div class="ds-section__top"><div><span class="ds-eyebrow">02 / type</span><h2 class="ds-section__title">Técnico, não ilegível.</h2><p class="ds-section__desc">Space Grotesk organiza títulos e parágrafos; JetBrains Mono sinaliza código, metadados e navegação.</p></div></div>
+        <div class="demo-type"><span class="demo-type__label">Display / Space Grotesk</span><p class="demo-type__sample" style="font-size:clamp(2rem,5vw,4rem);font-weight:600;line-height:1.08;letter-spacing:-.065em">Build for the long run<span class="ds-highlight">.</span></p></div>
+        <div class="demo-type"><span class="demo-type__label">Heading / Space Grotesk</span><p class="demo-type__sample" style="font-size:clamp(1.5rem,3vw,2.3rem);font-weight:600;line-height:1.2;letter-spacing:-.045em">Engineering is a series of trade-offs.</p></div>
+        <div class="demo-type"><span class="demo-type__label">Body / Space Grotesk</span><p class="demo-type__sample ds-muted" style="max-width:65ch">Sistemas confiáveis não surgem de ferramentas isoladas. Eles dependem de decisões coerentes, observabilidade e evolução contínua.</p></div>
+        <div class="demo-type"><span class="demo-type__label">Meta / JetBrains Mono</span><p class="demo-type__sample ds-mono" style="font-size:.79rem;color:var(--ds-color-accent)">GET /articles • 200 OK • 8 min read</p></div>
+      </div>
+    </section>
+    <section class="ds-section" id="componentes">
+      <div class="ds-container">
+        <div class="ds-section__top"><div><span class="ds-eyebrow">03 / components</span><h2 class="ds-section__title">Componentes prontos para uso.</h2><p class="ds-section__desc">Estilos desacoplados, estados previsíveis e HTML sem dependências de framework.</p></div></div>
+        <div class="ds-grid ds-grid--two">
+          <div class="demo-panel">
+            <h3>Buttons &amp; links</h3>
+            <p class="demo-subheading">Primary / Secondary / Ghost / Disabled</p>
+            <div class="ds-row"><button type="button" class="ds-btn ds-btn--primary">Ação principal ↗</button><button type="button" class="ds-btn ds-btn--secondary">Secundária</button><button type="button" class="ds-btn ds-btn--ghost">Link →</button><button type="button" class="ds-btn ds-btn--primary" disabled>Indisponível</button></div>
+          </div>
+          <div class="demo-panel">
+            <h3>Chips &amp; status</h3>
+            <p class="demo-subheading">Default / Green / Highlight</p>
+            <div class="ds-row"><span class="ds-chip">Distributed systems</span><span class="ds-chip ds-chip--green">Production-ready</span><span class="ds-chip ds-chip--yellow">Architecture</span></div>
+            <p class="demo-subheading">Input</p>
+            <label class="ds-field__label" for="catalog-search">Buscar componentes (demonstração)</label>
+            <input class="ds-input" id="catalog-search" placeholder="Ex.: card, badge, button" aria-describedby="catalog-input-note">
+            <p class="ds-caption" id="catalog-input-note">Campo visual. A busca funcional está na demonstração de artigos.</p>
+          </div>
+          <div class="demo-panel">
+            <h3>Callouts</h3>
+            <p class="demo-subheading">Guidance / Important</p>
+            <div class="ds-callout"><strong>Nota arquitetural</strong><p class="ds-muted" style="margin:.4rem 0 0">Componentes devem resolver um problema repetível, não apenas decorar uma seção.</p></div>
+            <div class="ds-callout ds-callout--highlight" style="margin-top:.9rem"><strong>Importante</strong><p class="ds-muted" style="margin:.4rem 0 0">A página existente do Axion está fora do escopo visual.</p></div>
+          </div>
+          <div class="demo-panel">
+            <h3>Layout &amp; hierarchy</h3>
+            <p class="demo-subheading">Containers / Spacing / Border</p>
+            <p class="demo-guideline">Utilize um único grid de 1120px para páginas comuns e largura de leitura limitada a 70 caracteres em artigos.</p>
+            <div class="ds-row" style="margin-top:1.4rem"><span class="ds-chip">4px base</span><span class="ds-chip">44px target</span><span class="ds-chip">AA contrast</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="ds-section" id="padroes">
+      <div class="ds-container">
+        <div class="ds-section__top"><div><span class="ds-eyebrow">04 / patterns</span><h2 class="ds-section__title">Uma linguagem. Vários contextos.</h2><p class="ds-section__desc">Cards de projeto, lista editorial e páginas de leitura utilizam os mesmos tokens e componentes.</p></div></div>
+        <div class="ds-grid">
+          <a class="ds-card" href="./projects.html"><span class="ds-card__eyebrow">Open source / Featured</span><h3 class="ds-card__title">Axion</h3><p class="ds-card__desc">Uma maneira consistente de apresentar projetos técnicos com contexto, impacto e decisões.</p><div class="ds-card__foot"><span class="ds-chip">Go</span><span class="ds-card__arrow">Ver padrão ↗</span></div></a>
+          <a class="ds-card" href="./blog.html"><span class="ds-card__eyebrow">Writing / Collection</span><h3 class="ds-card__title">Engineering notes</h3><p class="ds-card__desc">Lista de artigos pensada para escaneabilidade, busca e navegação por assunto.</p><div class="ds-card__foot"><span class="ds-chip">Editorial</span><span class="ds-card__arrow">Ver padrão ↗</span></div></a>
+          <a class="ds-card" href="./article.html"><span class="ds-card__eyebrow">Writing / Long form</span><h3 class="ds-card__title">Deep dive técnico</h3><p class="ds-card__desc">Texto confortável, trechos de código legíveis e estilos previsíveis para conteúdos longos.</p><div class="ds-card__foot"><span class="ds-chip">MDX-ready</span><span class="ds-card__arrow">Ver padrão ↗</span></div></a>
+        </div>
+      </div>
+    </section>
+    <section class="ds-section ds-section--compact" id="principios">
+      <div class="ds-container">
+        <span class="ds-eyebrow">05 / principles</span>
+        <h2 class="ds-section__title" style="margin:1rem 0 2rem">Restrições fazem parte do design.</h2>
+        <div class="demo-example-links">
+          <div class="demo-example"><h3>Clareza sobre efeitos</h3><p>Preferir contraste, estrutura e hierarquia a animações que competem com a leitura.</p><a href="../foundations/principles.md">Ler princípios ↗</a></div>
+          <div class="demo-example"><h3>Acessibilidade</h3><p>Foco visível, navegação por teclado, responsividade e suporte a redução de movimento.</p><a href="../foundations/accessibility.md">Ler critérios ↗</a></div>
+          <div class="demo-example"><h3>Uma base compartilhada</h3><p>Portfólio e blog reutilizam tokens, componentes e padrões; Axion permanece independente.</p><a href="../patterns/pages.md">Ler padrões ↗</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="ds-footer"><div class="ds-container ds-footer__inner"><span>RG. / Dark Engineering / v0.1.0</span><span>Protótipo isolado • Nenhuma alteração na home atual</span><a href="https://github.com/rgomids" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></footer>
+</body>
+</html>
