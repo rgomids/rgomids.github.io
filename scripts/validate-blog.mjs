@@ -40,9 +40,12 @@ check(config.includes('permalink: "/artigos/:title/"'), 'Post permalink conventi
 check(read('CNAME').trim() === 'rafaelgomides.dev.br', 'Custom domain changed');
 check(home.includes('href="/artigos/"'), 'Blog not linked from homepage');
 check(home.includes('href="/feed.xml"'), 'RSS not linked from homepage');
-for (const tag of ['Sobre', 'Projetos', 'Jornada', 'Experiência', 'Axion']) {
+for (const tag of ['Sobre', 'Projetos', 'Jornada', 'Experiência', 'Axiom']) {
   check(home.includes(tag), 'Portfolio navigation lost: ' + tag);
 }
+check(!/Axion/i.test(home) && !/Axion/i.test(layout),
+  'Incorrect Axiom branding found in portfolio or blog navigation');
+check(layout.includes('Abrir página do Axiom'), 'Axiom link label missing in blog');
 check(layout.includes('design-system/tokens/tokens.css'), 'Shared tokens absent');
 check(layout.includes('design-system/components/components.css'), 'Shared components absent');
 check(layout.includes('portfolio.js'), 'Mobile navigation not reused');
