@@ -124,3 +124,7 @@ Para adicionar diagramas a outro artigo, use o mesmo padrão: versionar o arquiv
 6. Fazer merge após a revisão e verificar a URL pública e o índice de artigos.
 
 **Importante:** o processo de publicação deve respeitar a fronteira editorial definida pelo autor; não remova parágrafos substantivos do corpo do artigo.
+
+## Modo claro e escuro
+
+O blog lê o controlador compartilhado `/design-system/theme/theme.js` antes do CSS. O botão no header alterna os modos e salva a escolha entre listagem e artigos. Sem preferência manual, segue a configuração clara/escura do sistema. Os diagramas Mermaid já exportados para SVG mantêm contraste na paleta escura original, independentemente do tema de leitura. Ao alterar CSS do blog, utilize tokens semânticos e verifique ambos os modos.

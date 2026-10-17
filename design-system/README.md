@@ -1,10 +1,10 @@
 # Dark Engineering — Design System
 
-**Versão:** 0.1.0 (proposta para revisão)  
+**Versão:** 0.2.0 (suporte a light/dark mode)  
 **Escopo:** portfólio pessoal + blog técnico de Rafael Gomides  
 **Status:** biblioteca visual v0.1 integrada ao portfólio na branch de redesign; a página do Axion permanece independente
 
-Design system dark-first com linguagem de engenharia: legibilidade editorial, hierarquia de informação, acentos verde-pastel e amarelo, tipografia sans com monoespaçada aplicada a contexto técnico.
+Design system dark-first, com modo claro opcional e linguagem de engenharia: legibilidade editorial, hierarquia de informação, acentos verde-pastel e amarelo, tipografia sans com monoespaçada aplicada a contexto técnico.
 
 ## Explorar
 
@@ -121,3 +121,18 @@ python3 -m http.server 8000
 ```
 
 **Escopo:** mesmo conteúdo das seis seções existentes, novo layout e navegação. A implementação de páginas reais do blog não faz parte dessa entrega.
+
+## Temas — Dark / Light
+
+O tema escuro original permanece como a base do design system. Os tokens claros são aplicados com `<html data-theme="light">`, mantendo as mesmas classes `.ds-*` e componentes. A paleta clara usa texto escuro, superfícies suaves e acentos verde/amarelo adaptados para contraste. Para uma interface interativa, carregue `design-system/theme/theme.js` de forma síncrona no `<head>`, **antes** das folhas de estilo, e inclua no cabeçalho:
+
+```html
+<button type="button" class="ds-theme-toggle" data-theme-toggle aria-label="Alternar tema">
+  <span class="ds-theme-toggle__icon" data-theme-icon aria-hidden="true">☀</span>
+  <span class="ds-theme-toggle__label" data-theme-label>Modo claro</span>
+</button>
+```
+
+**Comportamento:** sem preferência salva, segue `prefers-color-scheme`; clique alterna claro/escuro e salva o modo escolhido em `localStorage` (`rgomids-color-theme`). Caso armazenamento ou JavaScript esteja indisponível, o site permanece utilizável. O controle só aparece depois que o JS inicializa. A preferência vale para todas as páginas que carregam o controlador (no momento, o blog e as demonstrações). O portfólio principal permanece no layout escuro, sem controle de tema nesta entrega, e a página do Axion permanece independente.
+
+Use os tokens semânticos `--ds-color-*` em vez de cores fixas nas superfícies do blog. Para cada novo componente, verifique os dois temas. Ilustrações SVG Mermaid mantêm sua paleta escura própria em ambos os modos por legibilidade.

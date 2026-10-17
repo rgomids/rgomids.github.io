@@ -47,6 +47,17 @@ check(layout.includes('design-system/tokens/tokens.css'), 'Shared tokens absent'
 check(layout.includes('design-system/components/components.css'), 'Shared components absent');
 check(layout.includes('portfolio.js'), 'Mobile navigation not reused');
 check(layout.includes('blog.css'), 'Blog styling absent');
+check(layout.includes('design-system/theme/theme.js'), 'Shared theme controller missing from blog');
+check(layout.includes('data-theme-toggle'), 'Theme toggle missing in blog header');
+check(layout.indexOf('design-system/theme/theme.js') < layout.indexOf('design-system/tokens/tokens.css'),
+  'Theme initialization must precede stylesheet to prevent wrong-theme flash');
+check(layout.includes('name="color-scheme" content="light dark"'), 'Browser light/dark color scheme declaration missing');
+check(tokens.includes(':root[data-theme="light"]'), 'Light palette missing from design system');
+check(components.includes('.ds-theme-toggle'), 'Theme toggle component styles missing');
+const themeScript = read('design-system/theme/theme.js');
+try { new Script(themeScript); } catch (error) { failures.push('Invalid theme controller: ' + error.message); }
+check(themeScript.includes('rgomids-color-theme'), 'Theme preference storage key missing');
+check(themeScript.includes('prefers-color-scheme: dark'), 'OS preference behavior missing');
 check(blog.includes('site.posts') && blog.includes('data-post-search'), 'Searchable blog listing missing');
 check(blog.includes('data-post-filter'), 'Tag filters missing');
 check(blog.includes('site.posts.size > 0'), 'Empty state missing');

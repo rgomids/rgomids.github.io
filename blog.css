@@ -62,7 +62,7 @@ html { scroll-behavior: smooth; }
 .blog-article-body .ds-prose img { max-width: 100%; height: auto; border-radius: var(--ds-radius-sm); }
 .blog-article-body .ds-prose figure { margin-inline: 0; }
 .blog-article-body .ds-prose figcaption { font: .73rem/1.5 var(--ds-font-mono); color: var(--ds-color-subtle); }
-.blog-article-body .ds-prose .highlight { background: #101713; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); overflow: hidden; margin: 1.6rem 0; }
+.blog-article-body .ds-prose .highlight { background: var(--ds-color-code-bg); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); overflow: hidden; margin: 1.6rem 0; }
 .blog-article-body .ds-prose .highlight pre { background: transparent; border: 0; margin: 0; border-radius: 0; overflow-x: auto; }
 .blog-article-body .ds-prose :not(pre) > code { overflow-wrap: anywhere; }
 .blog-article-body .ds-prose a { text-decoration: underline; text-underline-offset: .2em; }
@@ -180,4 +180,33 @@ html { scroll-behavior: smooth; }
 @media (max-width: 700px) {
   .blog-article-body .ds-prose .blog-diagram__visual img { min-width: 620px; }
   .blog-article-body .ds-prose .blog-diagram__copy { margin-left: 0; }
+}
+
+/* Keep static Mermaid SVGs in their authored dark palette in either UI mode.
+   Unlike navigation/text surfaces, these are static illustrations. */
+:root[data-theme="light"] .blog-article-body .blog-diagram__visual {
+  background: #151b18;
+}
+:root[data-theme="light"] .blog-article-body .blog-diagram__visual img {
+  background: #151b18;
+}
+
+/* The blog has more navigation destinations than the portfolio. Collapse early
+   so the added appearance switch never squeezes or wraps desktop links. */
+@media (max-width: 1050px) {
+  .ds-app .ds-nav__toggle { display: inline-flex; }
+  .ds-app .ds-nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--ds-color-border);
+    background: var(--ds-color-bg);
+  }
+  .ds-app .ds-nav__links[data-open="true"] { display: flex; }
+  .ds-app .ds-nav__link { padding: .85rem; }
 }

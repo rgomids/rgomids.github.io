@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light dark">
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}Rafael Gomides</title>
   <meta name="description" content="{{ page.description | default: site.description | strip_html | escape }}">
   <meta name="author" content="Rafael Gomides">
@@ -26,6 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="{{ '/design-system/theme/theme.js' | relative_url }}"></script>
   <link rel="stylesheet" href="{{ '/design-system/tokens/tokens.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/design-system/components/components.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}">
@@ -41,6 +42,7 @@
         <span class="ds-brand__hint">/ engineering notes</span>
       </a>
       <nav class="ds-nav" aria-label="Navegação principal">
+        <button type="button" class="ds-theme-toggle" data-theme-toggle aria-label="Alternar tema" title="Alternar tema"><span class="ds-theme-toggle__icon" data-theme-icon aria-hidden="true">☀</span><span class="ds-theme-toggle__label" data-theme-label>Modo claro</span></button>
         <button class="ds-nav__toggle" type="button" data-menu-button aria-expanded="false" aria-controls="blog-navigation" aria-label="Abrir menu">☰</button>
         <div class="ds-nav__links" id="blog-navigation" data-menu-panel data-open="false">
           <a class="ds-nav__link" href="{{ '/#sobre' | relative_url }}">Sobre</a>
