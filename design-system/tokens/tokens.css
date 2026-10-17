@@ -1,4 +1,4 @@
-/* Dark Engineering v0.1 — canonical, framework-agnostic design tokens.
+/* Dark Engineering v0.2 — canonical, theme-aware, framework-agnostic design tokens.
    Variables are intentionally namespaced: existing portfolio styles are untouched. */
 :root {
   --ds-color-bg: #0b0f0e;
@@ -15,6 +15,8 @@
   --ds-color-highlight-contrast: #252009;
   --ds-color-danger: #f0a59c;
   --ds-color-focus: #e6d67e;
+  --ds-color-header-bg: rgb(11 15 14 / .92);
+  --ds-color-code-bg: #101713;
   --ds-font-sans: "Space Grotesk", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --ds-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --ds-font-size-xs: 0.75rem;
@@ -48,6 +50,30 @@
   --ds-transition-fast: 160ms ease;
   --ds-transition-medium: 260ms ease;
 }
+/* Explicit light palette. Absent data-theme, the original dark look is unchanged.
+   Apply data-theme to <html> so all shared components inherit the same tokens. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --ds-color-bg: #f7f8f4;
+  --ds-color-surface: #ffffff;
+  --ds-color-surface-raised: #ebf2ed;
+  --ds-color-border: #cbd7ce;
+  --ds-color-border-strong: #8da598;
+  --ds-color-text: #15231b;
+  --ds-color-muted: #466050;
+  --ds-color-subtle: #54695c;
+  --ds-color-accent: #23633d;
+  --ds-color-accent-contrast: #ffffff;
+  --ds-color-highlight: #755500;
+  --ds-color-highlight-contrast: #ffffff;
+  --ds-color-danger: #a53432;
+  --ds-color-focus: #765500;
+  --ds-color-header-bg: rgb(247 248 244 / .94);
+  --ds-color-code-bg: #edf3ee;
+  --ds-shadow-card: 0 16px 48px rgb(27 53 35 / .09);
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+
 .ds-app,
 .ds-app *,
 .ds-app *::before,
