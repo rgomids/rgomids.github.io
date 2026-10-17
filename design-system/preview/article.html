@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="description" content="Exemplo de leitura técnica no design system Dark Engineering."><title>Artigo técnico — Dark Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens/tokens.css"><link rel="stylesheet" href="../components/components.css"><link rel="stylesheet" href="./preview.css"><script defer src="./preview.js"></script>
+</head><body class="ds-app">
+<a class="ds-skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="ds-header"><div class="ds-container ds-header__inner"><a class="ds-brand" href="./index.html" aria-label="Dark Engineering — início"><span class="ds-brand__mark">RG<span class="ds-brand__dot">.</span></span><span class="ds-brand__hint">/ engineering notes</span></a>
+<nav class="ds-nav" aria-label="Principal"><button type="button" class="ds-nav__toggle" data-menu-button aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button><div class="ds-nav__links" id="menu-principal" data-menu-panel data-open="false"><a class="ds-nav__link" href="./index.html">Sistema</a><a class="ds-nav__link" href="./projects.html">Projetos</a><a class="ds-nav__link" aria-current="page" href="./blog.html">Artigos</a><a class="ds-nav__link ds-nav__link--accent" href="/axion/">Axion ↗</a></div></nav></div></header>
+<main id="conteudo">
+<section class="demo-page-intro"><div class="ds-container"><a class="ds-btn ds-btn--ghost" href="./blog.html">← Todos os artigos</a><div class="ds-article__meta" style="margin-top:2rem"><span class="ds-chip">Architecture</span><span>Exemplo de conteúdo</span><span>8 min de leitura (ilustrativo)</span></div><h1 class="ds-article__title">Da issue ao agente: arquitetura antes de automação<span class="ds-highlight">.</span></h1><p class="ds-article__intro">Uma página-modelo para avaliar hierarquia, links, blocos de código, notas e o ritmo de leitura. Este artigo é fictício e não deve ser publicado como conteúdo editorial final.</p><div class="ds-article__meta" style="margin-top:1.5rem"><span>Rafael Gomides</span><span>•</span><span>Engineering notes / Demo</span></div></div></section>
+<div class="ds-container demo-article-wrap">
+<article class="ds-prose">
+<p>Quando uma atividade é encaminhada a um agente, o principal risco nem sempre é a execução: é a perda de contexto, de fronteiras e de uma definição objetiva de conclusão.</p>
+<h2 id="contexto">1. Comece pelo contexto</h2>
+<p>Antes de delegar, descreva <strong>o problema</strong>, o resultado esperado e as evidências que permitirão verificar a entrega. Isso reduz a ambiguidade e evita trabalho tangencial.</p>
+<div class="ds-callout"><strong>Princípio de design</strong><p style="margin:.4rem 0 0">Callouts destacam decisões ou advertências. Não substituem a hierarquia principal do texto.</p></div>
+<h2 id="contrato">2. Defina um contrato claro</h2>
+<p>Uma interface pequena torna as obrigações explícitas. O exemplo em Go abaixo demonstra como os blocos de código devem se comportar em telas grandes e pequenas.</p>
+<pre><code>type TaskRequest struct {
+    Goal       string
+    Scope      []string
+    Acceptance []string
+}
+func (r TaskRequest) Valid() bool {
+    return r.Goal != "" &amp;&amp; len(r.Acceptance) &gt; 0
+}</code></pre>
+<p>O texto <code>TaskRequest.Valid()</code> deve permanecer legível e acessível por teclado, inclusive dentro de parágrafos e blocos longos.</p>
+<h2 id="tradeoffs">3. Torne os trade-offs visíveis</h2>
+<p>Uma decisão técnica deve registrar o que se ganha, o que se perde e por que determinada alternativa foi escolhida.</p>
+<blockquote>Legibilidade é uma propriedade do sistema, não um acabamento final.</blockquote>
+<ul><li>Explicitar os limites da alteração.</li><li>Manter decisões junto das evidências.</li><li>Não ampliar o escopo sem justificativa.</li></ul>
+<h2 id="proximos-passos">4. Encerramento</h2>
+<p>Um bom artigo técnico deixa o leitor com critérios aplicáveis, referências verificáveis e um caminho concreto para colocar o raciocínio em prática.</p>
+<hr class="ds-divider">
+<p class="ds-caption">Fim do conteúdo ilustrativo. Próximo passo: integrar Markdown ou MDX ao template de publicação.</p>
+<a href="./blog.html" class="ds-btn ds-btn--secondary">← Voltar para artigos</a>
+</article>
+<aside class="demo-toc" aria-label="Neste artigo"><h2>Nesta página</h2><a href="#contexto">01 / Contexto</a><a href="#contrato">02 / Contrato</a><a href="#tradeoffs">03 / Trade-offs</a><a href="#proximos-passos">04 / Encerramento</a></aside>
+</div></main>
+<footer class="ds-footer"><div class="ds-container ds-footer__inner"><span>RG. / Dark Engineering / v0.1.0</span><span>Modelo de artigo, não publicação real</span><a href="./index.html">Voltar ao catálogo ↗</a></div></footer>
+</body></html>
