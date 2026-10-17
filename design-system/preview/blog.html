@@ -1,19 +1,20 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
 <meta name="description" content="Modelo de listagem de artigos do design system Dark Engineering.">
 <title>Artigos — Dark Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../tokens/tokens.css"><link rel="stylesheet" href="../components/components.css"><link rel="stylesheet" href="./preview.css">
+<script src="../theme/theme.js"></script>
+  <link rel="stylesheet" href="../tokens/tokens.css"><link rel="stylesheet" href="../components/components.css"><link rel="stylesheet" href="./preview.css">
 <script defer src="./preview.js"></script>
 </head>
 <body class="ds-app">
 <a class="ds-skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="ds-header"><div class="ds-container ds-header__inner">
 <a class="ds-brand" href="./index.html" aria-label="Dark Engineering — início"><span class="ds-brand__mark">RG<span class="ds-brand__dot">.</span></span><span class="ds-brand__hint">/ engineering notes</span></a>
-<nav class="ds-nav" aria-label="Principal"><button type="button" class="ds-nav__toggle" data-menu-button aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button>
+<nav class="ds-nav" aria-label="Principal"><button type="button" class="ds-theme-toggle" data-theme-toggle aria-label="Alternar tema" title="Alternar tema"><span class="ds-theme-toggle__icon" data-theme-icon aria-hidden="true">☀</span><span class="ds-theme-toggle__label" data-theme-label>Modo claro</span></button><button type="button" class="ds-nav__toggle" data-menu-button aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button>
 <div class="ds-nav__links" id="menu-principal" data-menu-panel data-open="false"><a class="ds-nav__link" href="./index.html">Sistema</a><a class="ds-nav__link" href="./projects.html">Projetos</a><a class="ds-nav__link" aria-current="page" href="./blog.html">Artigos</a><a class="ds-nav__link ds-nav__link--accent" href="/axiom/">Axion ↗</a></div></nav>
 </div></header>
 <main id="conteudo">
