@@ -69,3 +69,27 @@ html { scroll-behavior: smooth; }
   .blog-footer__inner { align-items: flex-start; flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Mermaid diagrams: keyboard-scrollable and visually aligned with the reading surface. */
+.blog-article-body .ds-prose .blog-diagram {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: clamp(.85rem, 2vw, 1.5rem);
+  margin: 1.6rem 0;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-sm);
+  background: var(--ds-color-surface);
+  scrollbar-width: thin;
+}
+.blog-article-body .ds-prose .blog-diagram svg {
+  display: block;
+  min-width: min(540px, 100%);
+  width: 100%;
+  height: auto;
+  max-width: none;
+  margin-inline: auto;
+}
+.blog-article-body .ds-prose .blog-diagram:focus-visible {
+  outline: 3px solid var(--ds-color-focus);
+  outline-offset: 3px;
+}
