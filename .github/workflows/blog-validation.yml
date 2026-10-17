@@ -10,6 +10,7 @@ on:
       - 'artigos/**'
       - 'blog.css'
       - 'blog.js'
+      - 'blog-mermaid.js'
       - 'feed.xml'
       - 'sitemap.xml'
       - 'robots.txt'
@@ -28,6 +29,7 @@ on:
       - 'artigos/**'
       - 'blog.css'
       - 'blog.js'
+      - 'blog-mermaid.js'
       - 'feed.xml'
       - 'sitemap.xml'
       - 'robots.txt'
@@ -61,3 +63,9 @@ jobs:
           test -f _site/robots.txt
           test -f _site/CNAME
           grep -q 'Engineering Notes' _site/artigos/index.html || grep -q 'Publicações' _site/artigos/index.html
+          test -f _site/artigos/chatgpt-como-camada-de-preparacao/index.html
+          test -f _site/blog-mermaid.js
+          grep -q 'ChatGPT como camada de preparação' _site/artigos/chatgpt-como-camada-de-preparacao/index.html
+          ! grep -q 'Notas editoriais' _site/artigos/chatgpt-como-camada-de-preparacao/index.html
+          ! grep -q 'Rascunho editorial' _site/artigos/chatgpt-como-camada-de-preparacao/index.html
+          grep -q 'language-mermaid' _site/artigos/chatgpt-como-camada-de-preparacao/index.html

@@ -73,6 +73,12 @@ for (const filename of postFiles) {
   check(Boolean(frontmatter), 'Missing front matter: ' + filename);
   if (!frontmatter) continue;
   const yaml = frontmatter[1];
+  check(!/## Notas editoriais|Rascunho editorial|discussion-urls=|<mention-page/i.test(post),
+    'Editorial annotations leaked into published article: ' + filename);
+  if (post.includes('```mermaid')) {
+    check(exists('blog-mermaid.js'), 'Mermaid renderer missing for: ' + filename);
+    check(read('_layouts/article.html').includes('blog-mermaid.js'), 'Mermaid layout script missing');
+  }
   for (const field of ['title', 'description', 'date', 'tags']) {
     check(new RegExp('^' + field + ':\\s*\\S+', 'm').test(yaml), 'Missing field ' + field + ' in ' + filename);
   }

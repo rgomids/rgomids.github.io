@@ -87,3 +87,27 @@ bundle exec jekyll build
 ```
 
 O fluxo de PR possui GitHub Actions para executar essas verificações e confirmar a existência das rotas geradas.
+
+
+## Diagramas Mermaid
+
+Diagramas como `flowchart` e `sequenceDiagram` podem ser escritos diretamente em Markdown:
+
+\`\`\`mermaid
+flowchart LR
+    A["ChatGPT"] --> B["Linear"]
+    B --> C["Grok Bot"]
+\`\`\`
+
+O renderizador opcional `/blog-mermaid.js` usa a versão fixa `mermaid@11.4.1`, com tema escuro e política `securityLevel: strict`. O navegador carrega o pacote externo **somente quando há diagrama** na página. Se o carregamento ou o diagrama falhar, o código-fonte continua visível no artigo, sem impedir a leitura.
+
+## Fluxo usado no primeiro artigo (Notion → Markdown → GitHub)
+
+1. Ler toda a página do Notion e identificar explicitamente título, subtítulo, corpo e fronteira das notas internas.
+2. Converter para Markdown preservando links, headings, listas, código e diagramas.
+3. Remover callouts de rascunho, notas editoriais após as referências e anotações internas do Notion (ex.: `discussion-urls`).
+4. Criar o arquivo `_posts/YYYY-MM-DD-slug.md` com data local, descrição e tags.
+5. Validar o build Jekyll no PR e checar a saída gerada (inclusive os dois diagramas, caso existam).
+6. Fazer merge após a revisão e verificar a URL pública e o índice de artigos.
+
+**Importante:** o processo de publicação deve respeitar a fronteira editorial definida pelo autor; não remova parágrafos substantivos do corpo do artigo.
