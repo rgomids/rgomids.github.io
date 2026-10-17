@@ -1,0 +1,60 @@
+---
+layout: base
+title: "Artigos"
+description: "Notas e artigos técnicos sobre Go, backend, cloud, arquitetura de software e desenvolvimento com IA."
+permalink: /artigos/
+---
+<section class="blog-intro">
+  <div class="ds-container">
+    <span class="ds-eyebrow">Writing / Engineering notes</span>
+    <h1>Ideias, sistemas e <span class="ds-highlight">decisões.</span></h1>
+    <p>Artigos sobre engenharia de software, backend, arquitetura, cloud e desenvolvimento com IA. Experiências reais, trade-offs e conhecimento aplicável.</p>
+    <div class="blog-intro__actions">
+      <a class="ds-btn ds-btn--secondary" href="{{ '/#projetos' | relative_url }}">Explorar projetos ↗</a>
+      <a class="ds-btn ds-btn--ghost" href="{{ '/feed.xml' | relative_url }}" aria-label="Assinar feed RSS do blog">RSS ↗</a>
+    </div>
+  </div>
+</section>
+<section class="ds-section blog-listing">
+  <div class="ds-container">
+    <div class="ds-section__top">
+      <div><span class="ds-eyebrow">Index / All posts</span><h2 class="ds-section__title">Publicações</h2><p class="ds-section__desc">Escolha um assunto ou pesquise entre os artigos publicados.</p></div>
+      {% if site.posts.size > 0 %}<span class="ds-caption" data-post-count role="status" aria-live="polite">{{ site.posts.size }} artigos</span>{% endif %}
+    </div>
+    {% if site.posts.size > 0 %}
+    <div class="blog-search">
+      <label class="ds-field__label" for="buscar-artigos">Buscar por título, descrição ou assunto</label>
+      <input class="ds-input" type="search" id="buscar-artigos" data-post-search placeholder="Ex.: observabilidade, Go, arquitetura…" autocomplete="off">
+    </div>
+    <div class="blog-filters" role="group" aria-label="Filtrar artigos por assunto">
+      <button type="button" class="blog-filter" aria-pressed="true" data-post-filter="all">Todos</button>
+      {% assign sorted_tags = site.tags | sort %}
+      {% for entry in sorted_tags %}
+      <button type="button" class="blog-filter" aria-pressed="false" data-post-filter="{{ entry[0] | downcase | escape }}">{{ entry[0] | escape }}</button>
+      {% endfor %}
+    </div>
+    <div class="ds-post-list">
+      {% for post in site.posts %}
+      {% assign read_minutes = post.content | number_of_words | divided_by: 200 | plus: 1 %}
+      <a class="ds-post-item" data-post data-tags="{{ post.tags | join: ',' | downcase | escape }}" href="{{ post.url | relative_url }}">
+        <time class="ds-post-item__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%d/%m/%Y' }}</time>
+        <div>
+          <h3 class="ds-post-item__title">{{ post.title | escape }}</h3>
+          <p class="ds-post-item__excerpt">{{ post.description | default: post.excerpt | strip_html | truncate: 170 | escape }}</p>
+          <div class="blog-tags"><span class="ds-caption">{{ read_minutes }} min de leitura</span>{% for tag in post.tags %}<span class="ds-chip">{{ tag | escape }}</span>{% endfor %}</div>
+        </div>
+        <span class="ds-post-item__arrow" aria-hidden="true">↗</span>
+      </a>
+      {% endfor %}
+    </div>
+    <p class="blog-no-results" data-post-empty hidden role="status">Nenhum artigo corresponde à pesquisa. Tente outro assunto.</p>
+    {% else %}
+    <div class="blog-empty">
+      <span class="blog-empty__symbol" aria-hidden="true">~/notes ›</span>
+      <h3>Os primeiros artigos estão a caminho.</h3>
+      <p>O espaço de publicações está preparado. Enquanto isso, explore os projetos e a trajetória profissional.</p>
+      <a class="ds-btn ds-btn--secondary" href="{{ '/#projetos' | relative_url }}">Ver projetos →</a>
+    </div>
+    {% endif %}
+  </div>
+</section>

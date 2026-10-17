@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ site.url }}/</loc></url>
+  <url><loc>{{ site.url }}/artigos/</loc></url>
+  {% for post in site.posts %}
+  <url>
+    <loc>{{ site.url }}{{ post.url | xml_escape }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date: '%Y-%m-%d' }}</lastmod>
+  </url>
+  {% endfor %}
+</urlset>
