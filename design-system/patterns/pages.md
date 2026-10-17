@@ -62,4 +62,4 @@ Manter o GitHub Pages. Avaliar Astro para geração estática e Markdown/MDX na 
 
 ## Axiom
 
-Foi informado que o projeto já está hospedado sob o mesmo domínio. O caminho `/axiom/` usado no protótipo e no portfólio é **presumido** a partir do nome do repositório, não validado tecnicamente. Antes da implantação, confirmar a URL efetiva, incluindo grafia e maiúsculas/minúsculas. A página existente permanece intocada.
+Foi informado que o projeto já está hospedado sob o mesmo domínio. O repositório `rgomids/axiom` declara `https://rafaelgomides.dev.br/axiom/` como página do projeto. A rota `/axiom/` foi mantida; a página existente permanece intocada.
