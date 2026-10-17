@@ -45,8 +45,24 @@ check(html.includes('data-menu-button') && html.includes('data-menu-panel'), 'Mo
 check(html.includes('aria-expanded="false"'), 'Menu state not initialized');
 check(html.includes('class="ds-skip-link"'), 'Skip link missing');
 check(html.includes('<main id="conteudo">'), 'Main landmark missing');
-check(html.includes('/axiom/'), 'Axion navigation is missing or unexpected; verify route before production');
-check((html.match(/class="project-card ds-card/g) || []).length === 4, 'Project count changed');
+check(html.includes('href="/axiom/"'), 'Axiom route missing from navigation');
+check(html.includes('Abrir página do Axiom') && html.includes('Axiom ↗'),
+  'Axiom branding missing in navigation');
+check(!/Axion/i.test(html), 'Incorrect Axion spelling found; use Axiom');
+const projectSection = html.match(/<section[^>]+id="projetos"[^>]*>([\\s\\S]*?)<\\/section>/)?.[1] || '';
+check(Boolean(projectSection), 'Featured projects section missing');
+const listedRepos = [...projectSection.matchAll(/href="https:\\/\\/github\\.com\\/rgomids\\/([^"/]+)"/g)]
+  .map(match => match[1]);
+const expectedPins = ['axiom', 'atlas-erp-core', 'nexus-platform'];
+check(JSON.stringify(listedRepos) === JSON.stringify(expectedPins),
+  'Featured projects must match current pinned GitHub repositories in order: ' + listedRepos.join(', '));
+check((projectSection.match(/class="project-card ds-card/g) || []).length === expectedPins.length,
+  'Featured card count must match pinned repository count');
+for (const label of ['Axiom', 'Atlas ERP Core', 'Nexus Platform']) {
+  check(projectSection.includes('<h3>' + label + '</h3>'), 'Pinned project title missing: ' + label);
+}
+check(!/DDD Starter Modelling|Go Clean Architecture/.test(projectSection),
+  'Removed forks must not remain in pinned projects');
 check((html.match(/class="journey-item"/g) || []).length >= 10, 'Journey timeline may have lost entries');
 check((html.match(/class="timeline-item"/g) || []).length === 3, 'Experience items changed');
 check(html.includes('Rafael Gomides') && html.includes('Backend, cloud e engenharia de software'), 'Hero content changed');
