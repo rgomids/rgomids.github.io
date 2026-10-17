@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}Rafael Gomides</title>
+  <meta name="description" content="{{ page.description | default: site.description | strip_html | escape }}">
+  <meta name="author" content="Rafael Gomides">
+  <link rel="canonical" href="{{ site.url }}{{ page.url | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
+  <meta property="og:type" content="{% if page.layout == 'article' %}article{% else %}website{% endif %}">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Rafael Gomides">
+  <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+  <meta property="og:description" content="{{ page.description | default: site.description | strip_html | escape }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url | relative_url }}">
+  {% if page.image %}<meta property="og:image" content="{{ site.url }}{{ page.image | relative_url }}">{% endif %}
+  {% if page.layout == 'article' %}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  {% if page.last_modified_at %}<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+  {% for tag in page.tags %}<meta property="article:tag" content="{{ tag | escape }}">{% endfor %}
+  {% endif %}
+  <meta name="twitter:card" content="{% if page.image %}summary_large_image{% else %}summary{% endif %}">
+  <link rel="alternate" type="application/rss+xml" title="Engineering Notes — RSS" href="{{ '/feed.xml' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/design-system/tokens/tokens.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/design-system/components/components.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}">
+  <script defer src="{{ '/portfolio.js' | relative_url }}"></script>
+  <script defer src="{{ '/blog.js' | relative_url }}"></script>
+</head>
+<body class="ds-app">
+  <a class="ds-skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="ds-header">
+    <div class="ds-container ds-header__inner">
+      <a class="ds-brand" href="{{ '/#top' | relative_url }}" aria-label="Rafael Gomides — início">
+        <span class="ds-brand__mark">RG<span class="ds-brand__dot">.</span></span>
+        <span class="ds-brand__hint">/ engineering notes</span>
+      </a>
+      <nav class="ds-nav" aria-label="Navegação principal">
+        <button class="ds-nav__toggle" type="button" data-menu-button aria-expanded="false" aria-controls="blog-navigation" aria-label="Abrir menu">☰</button>
+        <div class="ds-nav__links" id="blog-navigation" data-menu-panel data-open="false">
+          <a class="ds-nav__link" href="{{ '/#sobre' | relative_url }}">Sobre</a>
+          <a class="ds-nav__link" href="{{ '/#projetos' | relative_url }}">Projetos</a>
+          <a class="ds-nav__link" href="{{ '/#jornada' | relative_url }}">Jornada</a>
+          <a class="ds-nav__link" href="{{ '/#experiencia' | relative_url }}">Experiência</a>
+          <a class="ds-nav__link" aria-current="page" href="{{ '/artigos/' | relative_url }}">Artigos</a>
+          <a class="ds-nav__link ds-nav__link--accent" href="/axiom/" aria-label="Abrir página do Axion">Axion ↗</a>
+          <a class="ds-nav__link blog-contact" href="{{ '/#contato' | relative_url }}">Contato ↗</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">{{ content }}</main>
+  <footer class="ds-footer">
+    <div class="ds-container blog-footer__inner">
+      <a class="ds-brand" href="{{ '/#top' | relative_url }}" aria-label="Rafael Gomides — início">RG<span class="ds-brand__dot">.</span></a>
+      <span>Rafael Gomides · Poá, SP · Brasil</span>
+      <div class="blog-footer__links">
+        <a href="{{ '/artigos/' | relative_url }}">Artigos</a>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+        <a href="https://github.com/rgomids" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/rgomids" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
