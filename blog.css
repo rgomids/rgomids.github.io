@@ -143,6 +143,12 @@ html { scroll-behavior: smooth; }
   margin-inline: auto;
   border-radius: 0;
 }
+.blog-article-body .ds-prose .blog-diagram__visual img[src$="/architecture.svg"] { min-width: 1050px; }
+.blog-article-body .ds-prose .blog-diagram__visual img[src$="/sequence.svg"] { min-width: 900px; }
+.blog-article-body .ds-prose .blog-diagram__visual:focus-visible {
+  outline: 3px solid var(--ds-color-focus);
+  outline-offset: -3px;
+}
 .blog-article-body .ds-prose .blog-diagram__code {
   overflow: hidden;
 }
