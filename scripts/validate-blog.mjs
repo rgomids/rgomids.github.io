@@ -94,7 +94,7 @@ for (const filename of postFiles) {
     check((articleBody.match(/data-diagram-widget/g) || []).length === 2,
       'Both diagrams must offer visual/code toggle');
     const embeddedSources = [...articleBody.matchAll(
-      /<code class="language-mermaid-source">([\\s\\S]*?)<\\/code>/g
+      /<code class="language-mermaid-source">([\s\S]*?)<\/code>/g
     )].map(match => match[1]
       .replace(/&gt;/g, '>')
       .replace(/&lt;/g, '<')
