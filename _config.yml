@@ -1,0 +1,33 @@
+# GitHub Pages builds this site using Jekyll from the publishing branch.
+# The existing index.html is copied unchanged; only files with front matter are rendered.
+title: "Rafael Gomides — Engineering Notes"
+description: "Artigos sobre engenharia de software, arquitetura, backend, cloud e desenvolvimento com IA."
+url: "https://rafaelgomides.dev.br"
+baseurl: ""
+lang: "pt-BR"
+timezone: "America/Sao_Paulo"
+markdown: kramdown
+highlighter: rouge
+permalink: "/artigos/:title/"
+future: false
+show_drafts: false
+excerpt_separator: "<!--more-->"
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "article"
+      author: "Rafael Gomides"
+      comments: false
+      sitemap: true
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - scripts
+  - vendor
+  - node_modules
+  - ".github"
+  - "artigos/README.md"
+  - "design-system/scripts"
