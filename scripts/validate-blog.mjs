@@ -75,15 +75,15 @@ for (const filename of postFiles) {
   const yaml = frontmatter[1];
   check(!/## Notas editoriais|Rascunho editorial|discussion-urls=|<mention-page/i.test(post),
     'Editorial annotations leaked into published article: ' + filename);
-  const mermaidBlocks = (post.match(/<pre class="mermaid">/g) || []).length +
+  const mermaidBlocks = (post.match(/data-diagram-widget/g) || []).length +
+    (post.match(/<pre class="mermaid">/g) || []).length +
     (post.match(/```mermaid/g) || []).length;
   if (mermaidBlocks > 0) {
     check(exists('blog-mermaid.js'), 'Mermaid renderer missing for: ' + filename);
     check(read('_layouts/article.html').includes('blog-mermaid.js'), 'Mermaid layout script missing');
     const renderer = read('blog-mermaid.js');
-    check(renderer.includes("document.querySelectorAll('.blog-article-body .blog-diagram pre.mermaid')"),
-      'Native Mermaid diagram selector missing');
-    check(renderer.includes('language-mermaid'), 'Fenced Markdown Mermaid compatibility missing');
+    check(renderer.includes('[data-diagram-widget]'), 'Diagram viewer controller missing');
+    check(renderer.includes('data-diagram-copy'), 'Diagram copy action missing');
   }
   if (filename.includes('chatgpt-como-camada-de-preparacao')) {
     const articleBody = post.slice(frontmatter[0].length);
@@ -91,6 +91,13 @@ for (const filename of postFiles) {
       /^[A-Za-zÀ-ÿ“‘]/.test(block.trim()));
     check(paragraphs.length >= 40, 'Notion paragraph breaks lost: ' + paragraphs.length);
     check(mermaidBlocks === 2, 'First article must contain two diagrams');
+    check((articleBody.match(/data-diagram-widget/g) || []).length === 2,
+      'Both diagrams must offer visual/code toggle');
+    for (const name of ['architecture', 'sequence']) {
+      check(articleBody.includes(name + '.svg'), 'Missing local SVG reference: ' + name);
+      check(articleBody.includes('article-chatgpt-' + name + '.mmd'),
+        'Missing original Mermaid source link: ' + name);
+    }
     check(articleBody.includes('flowchart LR') && articleBody.includes('sequenceDiagram'),
       'Expected Mermaid diagram definitions missing');
   }
