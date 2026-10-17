@@ -1,0 +1,81 @@
+/* Dark Engineering v0.1 — canonical, framework-agnostic design tokens.
+   Variables are intentionally namespaced: existing portfolio styles are untouched. */
+:root {
+  --ds-color-bg: #0b0f0e;
+  --ds-color-surface: #151b18;
+  --ds-color-surface-raised: #1c2520;
+  --ds-color-border: #35443b;
+  --ds-color-border-strong: #587064;
+  --ds-color-text: #e9ede7;
+  --ds-color-muted: #a8b8ad;
+  --ds-color-subtle: #85988b;
+  --ds-color-accent: #a8d7b2;
+  --ds-color-accent-contrast: #101912;
+  --ds-color-highlight: #e6d67e;
+  --ds-color-highlight-contrast: #252009;
+  --ds-color-danger: #f0a59c;
+  --ds-color-focus: #e6d67e;
+  --ds-font-sans: "Space Grotesk", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ds-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --ds-font-size-xs: 0.75rem;
+  --ds-font-size-sm: 0.875rem;
+  --ds-font-size-md: 1rem;
+  --ds-font-size-lg: 1.125rem;
+  --ds-font-size-xl: 1.375rem;
+  --ds-font-size-2xl: clamp(1.75rem, 3.5vw, 2.5rem);
+  --ds-font-size-display: clamp(2.8rem, 7vw, 5.75rem);
+  --ds-line-body: 1.65;
+  --ds-line-heading: 1.08;
+  --ds-space-1: 0.25rem;
+  --ds-space-2: 0.5rem;
+  --ds-space-3: 0.75rem;
+  --ds-space-4: 1rem;
+  --ds-space-5: 1.25rem;
+  --ds-space-6: 1.5rem;
+  --ds-space-8: 2rem;
+  --ds-space-10: 2.5rem;
+  --ds-space-12: 3rem;
+  --ds-space-16: 4rem;
+  --ds-space-20: 5rem;
+  --ds-radius-xs: 0.375rem;
+  --ds-radius-sm: 0.625rem;
+  --ds-radius-md: 1rem;
+  --ds-radius-lg: 1.5rem;
+  --ds-radius-pill: 999px;
+  --ds-shadow-card: 0 16px 48px rgb(0 0 0 / 0.18);
+  --ds-content-width: 1120px;
+  --ds-reading-width: 70ch;
+  --ds-transition-fast: 160ms ease;
+  --ds-transition-medium: 260ms ease;
+}
+.ds-app,
+.ds-app *,
+.ds-app *::before,
+.ds-app *::after { box-sizing: border-box; }
+.ds-app {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--ds-color-bg);
+  color: var(--ds-color-text);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-font-size-md);
+  line-height: var(--ds-line-body);
+  -webkit-font-smoothing: antialiased;
+}
+.ds-app :where(h1,h2,h3,h4,p,ul,ol,pre,blockquote) { margin-top: 0; }
+.ds-app :where(a) { color: inherit; text-decoration: none; }
+.ds-app :where(button,input,textarea) { font: inherit; }
+.ds-app :where(button) { cursor: pointer; }
+.ds-app :where(img,svg) { max-width: 100%; }
+.ds-app :where(a,button,input,textarea,select):focus-visible {
+  outline: 3px solid var(--ds-color-focus);
+  outline-offset: 4px;
+}
+.ds-app ::selection { color: var(--ds-color-accent-contrast); background: var(--ds-color-accent); }
+@media (prefers-reduced-motion: reduce) {
+  .ds-app *, .ds-app *::before, .ds-app *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
