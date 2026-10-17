@@ -87,7 +87,7 @@ for (const filename of postFiles) {
   }
   if (filename.includes('chatgpt-como-camada-de-preparacao')) {
     const articleBody = post.slice(frontmatter[0].length);
-    const paragraphs = articleBody.split(/\\n\\s*\\n/).filter(block =>
+    const paragraphs = articleBody.split(/\n\s*\n/).filter(block =>
       /^[A-Za-zÀ-ÿ“‘]/.test(block.trim()));
     check(paragraphs.length >= 40, 'Notion paragraph breaks lost: ' + paragraphs.length);
     check(mermaidBlocks === 2, 'First article must contain two diagrams');
