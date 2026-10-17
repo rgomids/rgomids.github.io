@@ -1,15 +1,30 @@
-/* Progressive enhancement: render fenced Mermaid blocks without losing readable source.
-   Mermaid is loaded only on articles containing a Mermaid code fence.
-   If the CDN or rendering fails, Rouge's original code block remains visible. */
+/*
+ * Progressive Mermaid rendering for Jekyll article content.
+ *
+ * The Markdown uses <pre class="mermaid"> blocks (Mermaid's documented HTML
+ * format), not Rouge-generated code markup. Browser rendering is optional:
+ * the original readable source remains in place if scripts or CDN fail.
+ */
 (async () => {
-  const blocks = [...document.querySelectorAll('.language-mermaid pre code')];
-  if (!blocks.length) return;
+  const diagrams = [...document.querySelectorAll('.blog-article-body .blog-diagram pre.mermaid')];
+  if (!diagrams.length) return;
 
   let mermaid;
-  try {
-    ({ default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs'));
-  } catch (error) {
-    console.warn('Mermaid indisponível; código do diagrama preservado.', error);
+  // Try the pinned library first; the secondary provider is a fallback for CDN outages.
+  const urls = [
+    'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs',
+    'https://esm.sh/mermaid@11.4.1'
+  ];
+  for (const url of urls) {
+    try {
+      ({ default: mermaid } = await import(url));
+      if (mermaid && typeof mermaid.render === 'function') break;
+    } catch (error) {
+      console.warn('Não foi possível carregar Mermaid de', url, error);
+    }
+  }
+  if (!mermaid || typeof mermaid.render !== 'function') {
+    console.warn('Mermaid indisponível. A definição textual de cada diagrama continua visível.');
     return;
   }
 
@@ -32,22 +47,38 @@
     }
   });
 
-  for (const [index, code] of blocks.entries()) {
-    const source = code.textContent.trim();
-    const original = code.closest('.language-mermaid') || code.closest('pre');
-    if (!original || !source) continue;
+  for (const [index, pre] of diagrams.entries()) {
+    const source = pre.textContent.trim();
+    const wrapper = pre.closest('.blog-diagram');
+    if (!source || !wrapper) continue;
+
     try {
-      const { svg, bindFunctions } = await mermaid.render(`article-diagram-${index + 1}`, source);
-      const panel = document.createElement('div');
-      panel.className = 'blog-diagram';
-      panel.setAttribute('role', 'img');
-      panel.setAttribute('aria-label', `Diagrama técnico ${index + 1}`);
-      panel.setAttribute('tabindex', '0');
-      panel.innerHTML = svg;
-      bindFunctions?.(panel);
-      original.replaceWith(panel);
+      const id = `article-mermaid-${index + 1}`;
+      const { svg, bindFunctions } = await mermaid.render(id, source);
+      const graphic = document.createElement('div');
+      graphic.className = 'blog-diagram__graphic';
+      graphic.innerHTML = svg;
+
+      const diagramSvg = graphic.querySelector('svg');
+      if (!diagramSvg) throw new Error('Mermaid did not return a valid SVG');
+      const kind = source.startsWith('sequenceDiagram') ? 'sequence' : 'flowchart';
+      wrapper.dataset.kind = kind;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('tabindex', '0');
+      wrapper.setAttribute(
+        'aria-label',
+        kind === 'sequence'
+          ? 'Diagrama de sequência: preparação, execução e handoff de agentes'
+          : 'Diagrama de arquitetura: ChatGPT, Linear, Grok Bot e agentes'
+      );
+      diagramSvg.setAttribute('role', 'img');
+      diagramSvg.setAttribute('aria-label', wrapper.getAttribute('aria-label'));
+
+      bindFunctions?.(graphic);
+      pre.replaceWith(graphic);
+      wrapper.dataset.rendered = 'true';
     } catch (error) {
-      console.warn(`Falha ao renderizar diagrama ${index + 1}; mantendo fonte.`, error);
+      console.warn(`Erro ao renderizar o diagrama Mermaid ${index + 1}; mantendo o texto original.`, error);
     }
   }
 })();
