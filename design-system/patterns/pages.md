@@ -10,20 +10,20 @@
 /axiom/                Link para projeto independente — rota a confirmar
 ```
 
-Esta árvore é **proposta**, não representa rotas já implementadas. Não criar ou modificar arquivos dentro do projeto Axion.
+Esta árvore é **proposta**, não representa rotas já implementadas. Não criar ou modificar arquivos dentro do projeto Axiom.
 
 ## Elementos compartilhados
 
 - Mesmo header, footer, marca RG., paleta, tipografia, grid e estados.
 - Em desktop, navegação compacta, horizontal e sem células de 98px.
 - Em mobile, menu explícito por botão com `aria-expanded`.
-- `Axion ↗` aparece como destino independente, sem absorver visualmente o projeto.
+- `Axiom ↗` aparece como destino independente, sem absorver visualmente o projeto.
 - Não usar "Disponível" como link de navegação primário: estado profissional e ação são conceitos diferentes.
 
 ## Portfólio
 
 1. **Hero:** frase clara sobre sistemas distribuídos, arquitetura e backend; CTA para projetos e artigos.
-2. **Projetos:** cards apresentam problema, decisão técnica e impacto. Destacar Axion sem reestilizá-lo.
+2. **Projetos:** cards apresentam problema, decisão técnica e impacto. Destacar Axiom sem reestilizá-lo.
 3. **Sobre:** trajetória e competências, com forte hierarquia e escaneabilidade.
 4. **Jornada:** narrativa aprofundada em página/seção secundária para evitar home excessiva.
 5. **Contato:** links reais e discretos.
@@ -60,6 +60,6 @@ draft: true
 
 Manter o GitHub Pages. Avaliar Astro para geração estática e Markdown/MDX na fase de construção do novo site. Reaproveitar `tokens.css` e `components.css`; extrair header/footer/templates dos HTMLs do catálogo para layouts comuns. **Não migrar a stack nesta PR.**
 
-## Axion
+## Axiom
 
 Foi informado que o projeto já está hospedado sob o mesmo domínio. O caminho `/axiom/` usado no protótipo e no portfólio é **presumido** a partir do nome do repositório, não validado tecnicamente. Antes da implantação, confirmar a URL efetiva, incluindo grafia e maiúsculas/minúsculas. A página existente permanece intocada.
