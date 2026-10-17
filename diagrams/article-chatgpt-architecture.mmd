@@ -1,0 +1,16 @@
+flowchart LR
+    U["Engenheiro"] -->|"prepara e autoriza"| C["ChatGPT Project"]
+    subgraph CP["Preparação e integração"]
+        C --> D["Plugin de domínio"]
+        C --> N["Plugin de notificação"]
+        N --> S["ChatGPT Sites: ponte HTTP"]
+    end
+    D -->|"publica prompt"| L["Linear: issue e comentário"]
+    L -. "ID + permalink" .-> C
+    S -->|"POST com prompt_url"| B["Grok Bot: coordenação"]
+    B -->|"acompanha e roteia"| X["Codex"]
+    B -->|"acompanha e roteia"| A["Claude Code"]
+    X -. "estado e handoff, se necessário" .-> B
+    B -->|"atualiza andamento"| L
+    B -->|"notifica conclusão"| U
+    U -->|"revisa resultado"| R["Código ou artefato entregue"]
