@@ -1,0 +1,16 @@
+{
+  "theme": "dark",
+  "securityLevel": "strict",
+  "fontFamily": "Arial, sans-serif",
+  "themeVariables": {
+    "darkMode": true,
+    "background": "#151b18",
+    "primaryColor": "#1c2520",
+    "primaryTextColor": "#e9ede7",
+    "primaryBorderColor": "#587064",
+    "lineColor": "#a8d7b2",
+    "secondaryColor": "#1c2520",
+    "tertiaryColor": "#151b18",
+    "textColor": "#e9ede7"
+  }
+}
