@@ -1,8 +1,8 @@
 name: Render article Mermaid SVGs
 on:
   push:
-    branches:
-      - fix/blog-diagrams-static-svg-viewer
+    branches-ignore:
+      - main
     paths:
       - 'diagrams/**'
       - '.github/workflows/render-article-diagrams.yml'
