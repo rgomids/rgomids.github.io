@@ -99,3 +99,6 @@ a.ds-post-item:hover { background: var(--ds-color-surface); }
   .ds-card { padding: 1.1rem; }
   .ds-prose { font-size: 1rem; }
 }
+
+/* Explicitly preserve native hidden semantics on display-based components. */
+.ds-app [hidden] { display: none !important; }
