@@ -1,0 +1,34 @@
+---
+layout: base
+---
+<article>
+  <header class="blog-article-header">
+    <div class="ds-container">
+      <a class="ds-btn ds-btn--ghost" href="{{ '/artigos/' | relative_url }}">← Voltar aos artigos</a>
+      <div class="ds-article__meta blog-article-meta">
+        <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%d/%m/%Y' }}</time>
+        {% assign read_minutes = page.content | number_of_words | divided_by: 200 | plus: 1 %}
+        <span aria-hidden="true">·</span><span>{{ read_minutes }} min de leitura</span>
+        {% if page.last_modified_at %}<span aria-hidden="true">·</span><span>Atualizado em {{ page.last_modified_at | date: '%d/%m/%Y' }}</span>{% endif %}
+      </div>
+      <h1 class="ds-article__title">{{ page.title | escape }}</h1>
+      {% if page.description %}<p class="ds-article__intro">{{ page.description | escape }}</p>{% endif %}
+      <div class="blog-tags" aria-label="Assuntos do artigo">
+        {% for tag in page.tags %}<span class="ds-chip">{{ tag | escape }}</span>{% endfor %}
+      </div>
+      <p class="blog-author">Por {{ page.author | default: 'Rafael Gomides' | escape }}</p>
+    </div>
+  </header>
+  <div class="ds-container blog-article-body">
+    <div class="ds-prose">
+      {{ content }}
+    </div>
+  </div>
+  <div class="ds-container blog-article-end">
+    <div class="ds-callout">
+      <strong>Gostou do conteúdo?</strong>
+      <p>Confira outros artigos sobre engenharia de software, backend e arquitetura.</p>
+      <a class="ds-btn ds-btn--secondary" href="{{ '/artigos/' | relative_url }}">Explorar artigos →</a>
+    </div>
+  </div>
+</article>
