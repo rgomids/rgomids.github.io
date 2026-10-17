@@ -41,3 +41,17 @@ As bordas decorativas não devem ser o único indicador de estado. Para estados 
 - [ ] Imagens de conteúdo têm `alt` descritivo e ícones decorativos são ocultados de tecnologia assistiva.
 - [ ] Verificar novamente o contraste após adicionar realces, imagens ou estados.
 - [ ] Avaliar sem JavaScript e com redução de movimento.
+
+## Tema claro (v0.2)
+
+As cores claras adicionadas aos tokens são testadas pelo script `design-system/scripts/validate.mjs` com razão mínima **4.5:1** para os pares de texto relevantes:
+
+| Par no tema claro | Razão aproximada |
+| --- | ---: |
+| Texto `#15231b` / fundo `#f7f8f4` | 15.28:1 |
+| Muted `#466050` / fundo | 6.46:1 |
+| Accent `#23633d` / fundo | 6.73:1 |
+| Highlight `#755500` / fundo | 6.44:1 |
+| Texto branco / accent | 7.18:1 |
+
+O botão para alternar tema é nativo, acessível pelo teclado, com ação em `aria-label` atualizada. Quando não há preferência salva, o sistema escolhe pela preferência de cores do SO; a escolha manual é preservada entre páginas. Navegação, foco, seleção e campos herdam os tokens dos dois modos.
