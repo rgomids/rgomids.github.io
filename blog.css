@@ -190,3 +190,23 @@ html { scroll-behavior: smooth; }
 :root[data-theme="light"] .blog-article-body .blog-diagram__visual img {
   background: #151b18;
 }
+
+/* The blog has more navigation destinations than the portfolio. Collapse early
+   so the added appearance switch never squeezes or wraps desktop links. */
+@media (max-width: 1050px) {
+  .ds-app .ds-nav__toggle { display: inline-flex; }
+  .ds-app .ds-nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--ds-color-border);
+    background: var(--ds-color-bg);
+  }
+  .ds-app .ds-nav__links[data-open="true"] { display: flex; }
+  .ds-app .ds-nav__link { padding: .85rem; }
+}
