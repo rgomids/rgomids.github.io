@@ -87,48 +87,91 @@ html { scroll-behavior: smooth; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* Mermaid diagrams: raw source as fallback, SVG when the browser renders it. */
+/* Diagrams are self-contained, server-rendered SVGs; no JS required to see them. */
 .blog-article-body .ds-prose .blog-diagram {
-  max-width: 100%;
-  margin-block: 2.35rem;
+  margin: 2.5rem 0;
+  background: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-md);
-  background: var(--ds-color-surface);
-  overflow-x: auto;
-  scrollbar-width: thin;
+  overflow: hidden;
+  max-width: 100%;
 }
-.blog-article-body .ds-prose .blog-diagram pre.mermaid {
+.blog-article-body .ds-prose .blog-diagram__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  align-items: center;
+  padding: .75rem .85rem;
+  border-bottom: 1px solid var(--ds-color-border);
+}
+.blog-article-body .ds-prose :is(.blog-diagram__tab,.blog-diagram__copy) {
+  min-height: 38px;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xs);
   background: transparent;
   color: var(--ds-color-muted);
-  font: .78rem/1.7 var(--ds-font-mono);
-  white-space: pre;
-  overflow-x: auto;
-  border: 0;
-  padding: clamp(1rem, 2.4vw, 1.5rem);
-  margin: 0;
-  border-radius: 0;
+  padding: .45rem .85rem;
+  font: 500 .73rem/1.4 var(--ds-font-mono);
 }
-.blog-article-body .ds-prose .blog-diagram__graphic {
-  padding: clamp(.85rem, 2vw, 1.5rem);
+.blog-article-body .ds-prose .blog-diagram__tab[aria-pressed="true"] {
+  color: var(--ds-color-accent-contrast);
+  background: var(--ds-color-accent);
+  border-color: var(--ds-color-accent);
+}
+.blog-article-body .ds-prose .blog-diagram__copy { margin-left: auto; color: var(--ds-color-accent); }
+.blog-article-body .ds-prose :is(.blog-diagram__tab,.blog-diagram__copy):hover {
+  border-color: var(--ds-color-accent);
+}
+.blog-article-body .ds-prose .blog-diagram__status {
   width: 100%;
-  min-width: 0;
+  color: var(--ds-color-accent);
+  font: .69rem/1.3 var(--ds-font-mono);
 }
-.blog-article-body .ds-prose .blog-diagram__graphic svg {
+.blog-article-body .ds-prose .blog-diagram__status:empty { display: none; }
+.blog-article-body .ds-prose .blog-diagram__visual {
+  width: 100%;
+  padding: clamp(.65rem, 2vw, 1.25rem);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+.blog-article-body .ds-prose .blog-diagram__visual img {
   display: block;
   width: 100%;
-  min-width: 0;
-  height: auto;
   max-width: none;
+  height: auto;
   margin-inline: auto;
+  border-radius: 0;
 }
-.blog-article-body .ds-prose .blog-diagram[data-kind="sequence"] svg { min-width: 720px; }
-.blog-article-body .ds-prose .blog-diagram:focus-visible {
-  outline: 3px solid var(--ds-color-focus);
-  outline-offset: 3px;
+.blog-article-body .ds-prose .blog-diagram__code {
+  overflow: hidden;
 }
-@media (max-width: 600px) {
-  .blog-article-body .ds-prose p { margin-bottom: 1.65rem; }
-  .blog-article-body .ds-prose h2 { margin-top: 3.15rem; }
-  .blog-article-body .ds-prose h3 { margin-top: 2.4rem; }
-  .blog-article-body .ds-prose .blog-diagram[data-kind="flowchart"] svg { min-width: 560px; }
+.blog-article-body .ds-prose .blog-diagram__code pre {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: clamp(.9rem, 2.2vw, 1.5rem);
+  overflow-x: auto;
+  font: .77rem/1.7 var(--ds-font-mono);
+  color: var(--ds-color-text);
+}
+.blog-article-body .ds-prose .blog-diagram__code code {
+  white-space: pre;
+  font: inherit;
+  border: 0;
+  background: none;
+  padding: 0;
+  overflow-wrap: normal;
+}
+.blog-article-body .ds-prose .blog-diagram figcaption {
+  padding: .65rem 1rem;
+  border-top: 1px solid var(--ds-color-border);
+  color: var(--ds-color-muted);
+  font: .73rem/1.6 var(--ds-font-sans);
+}
+.blog-article-body .ds-prose .blog-diagram figcaption a { color: var(--ds-color-accent); }
+@media (max-width: 700px) {
+  .blog-article-body .ds-prose .blog-diagram__visual img { min-width: 620px; }
+  .blog-article-body .ds-prose .blog-diagram__copy { margin-left: 0; }
 }
