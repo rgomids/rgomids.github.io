@@ -95,7 +95,7 @@ Não é correto afirmar que plugins ou o ChatGPT são, por natureza, incapazes d
     <button type="button" class="blog-diagram__copy" data-diagram-copy>Copiar código</button>
     <span class="blog-diagram__status" data-diagram-status role="status" aria-live="polite"></span>
   </div>
-  <div class="blog-diagram__visual" data-diagram-panel="visual">
+  <div class="blog-diagram__visual" data-diagram-panel="visual" tabindex="0" role="region" aria-label="Diagrama — utilize rolagem horizontal para percorrer a imagem">
     <img src="/assets/artigos/chatgpt-como-camada-de-preparacao/architecture.svg" loading="lazy" decoding="async" alt="Fluxograma da preparação no ChatGPT, publicação no Linear e coordenação pelo Grok Bot">
   </div>
   <div class="blog-diagram__code" data-diagram-panel="code" hidden>
@@ -146,7 +146,7 @@ O diagrama dinâmico evidencia tanto a separação entre **disparo e entrega** q
     <button type="button" class="blog-diagram__copy" data-diagram-copy>Copiar código</button>
     <span class="blog-diagram__status" data-diagram-status role="status" aria-live="polite"></span>
   </div>
-  <div class="blog-diagram__visual" data-diagram-panel="visual">
+  <div class="blog-diagram__visual" data-diagram-panel="visual" tabindex="0" role="region" aria-label="Diagrama — utilize rolagem horizontal para percorrer a imagem">
     <img src="/assets/artigos/chatgpt-como-camada-de-preparacao/sequence.svg" loading="lazy" decoding="async" alt="Diagrama de sequência entre engenheiro, ChatGPT, Linear, Grok Bot, Codex e Claude Code">
   </div>
   <div class="blog-diagram__code" data-diagram-panel="code" hidden>
