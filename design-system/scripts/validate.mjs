@@ -83,9 +83,9 @@ report(read('preview/blog.html').includes('data-post-filter'), 'Blog filter UI m
 try { new Script(previewJs); } catch (error) { failures.push('Invalid preview JavaScript: ' + error.message); }
 
 if (failures.length) {
-  console.error(`Design system checks failed (\u0024{failures.length}):`);
+  console.error(`Design system checks failed (${failures.length}):`);
   for (const failure of failures) console.error(' - ' + failure);
   process.exitCode = 1;
 } else {
-  console.log(`Design system checks passed: \u0024{pages.length} HTML pages, linked assets, JS syntax, CSS tokens, contrast and accessibility primitives.`);
+  console.log(`Design system checks passed: ${pages.length} HTML pages, linked assets, JS syntax, CSS tokens, contrast and accessibility primitives.`);
 }
