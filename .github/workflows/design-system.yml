@@ -1,14 +1,22 @@
-name: Design system validation
+name: Design system and portfolio validation
 on:
   pull_request:
     paths:
       - 'design-system/**'
+      - 'index.html'
+      - 'portfolio.css'
+      - 'portfolio.js'
+      - 'scripts/validate-portfolio.mjs'
       - '.github/workflows/design-system.yml'
   push:
     branches:
       - main
     paths:
       - 'design-system/**'
+      - 'index.html'
+      - 'portfolio.css'
+      - 'portfolio.js'
+      - 'scripts/validate-portfolio.mjs'
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -19,5 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate static design system
+      - name: Validate design system
         run: node design-system/scripts/validate.mjs
+      - name: Validate portfolio integration
+        run: node scripts/validate-portfolio.mjs
