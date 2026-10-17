@@ -39,7 +39,7 @@ const contrast = (a, b) => {
   const dark = Math.min(luminance(a), luminance(b));
   return (bright + 0.05) / (dark + 0.05);
 };
-const lightBlock = tokenCss.match(/:root\\[data-theme="light"\\]\\s*\\{([^}]+)\\}/);
+const lightBlock = tokenCss.match(/:root\[data-theme="light"\]\s*\{([^}]+)\}/);
 report(Boolean(lightBlock), 'Explicit light palette missing');
 for (const [foreground, background] of [
   ['--ds-color-text', '--ds-color-bg'],
