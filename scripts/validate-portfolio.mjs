@@ -49,9 +49,9 @@ check(html.includes('href="/axiom/"'), 'Axiom route missing from navigation');
 check(html.includes('Abrir página do Axiom') && html.includes('Axiom ↗'),
   'Axiom branding missing in navigation');
 check(!/Axion/i.test(html), 'Incorrect Axion spelling found; use Axiom');
-const projectSection = html.match(/<section[^>]+id="projetos"[^>]*>([\\s\\S]*?)<\\/section>/)?.[1] || '';
+const projectSection = html.split('id="projetos">')[1]?.split('</section>')[0] || '';
 check(Boolean(projectSection), 'Featured projects section missing');
-const listedRepos = [...projectSection.matchAll(/href="https:\\/\\/github\\.com\\/rgomids\\/([^"/]+)"/g)]
+const listedRepos = [...projectSection.matchAll(new RegExp('href="https://github[.]com/rgomids/([^"/]+)"', 'g'))]
   .map(match => match[1]);
 const expectedPins = ['axiom', 'atlas-erp-core', 'nexus-platform'];
 check(JSON.stringify(listedRepos) === JSON.stringify(expectedPins),
