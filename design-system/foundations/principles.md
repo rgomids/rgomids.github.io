@@ -14,7 +14,7 @@ Inspirado na precisão dos sites técnicos minimalistas, na leitura confortável
 4. **Monoespaçada sem saturação:** reservar para metadados, labels, código, navegação e indicadores.
 5. **Componentes por responsabilidade:** cards não devem carregar lógica de filtros, tema ou navegação.
 6. **Portfólio = blog:** mesmo header, footer, tokens, largura e linguagem visual.
-7. **Axion independente:** apenas link externo/rota; não trocar seu design.
+7. **Axiom independente:** apenas link externo/rota; não trocar seu design.
 
 ## Práticas recomendadas
 
