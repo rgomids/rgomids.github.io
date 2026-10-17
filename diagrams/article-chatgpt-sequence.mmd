@@ -1,0 +1,32 @@
+sequenceDiagram
+    autonumber
+    actor E as Engenheiro
+    participant C as ChatGPT e plugin de domínio
+    participant L as Linear
+    participant N as Plugin de notificação e Sites
+    participant B as Grok Bot
+    participant X as Codex
+    participant A as Claude Code
+    E->>C: Prepara e revisa a demanda
+    C->>L: Publica instrução no comentário
+    L-->>C: Retorna ID e permalink
+    C->>C: Confere pré-condições
+    C->>N: Solicita notificação
+    N->>B: POST com prompt_url
+    B-->>N: Confirma acionamento HTTP
+    Note over B: Gerencia backlog e seleciona runtime
+    alt Runtime inicial Codex
+        B->>X: Encaminha execução
+        opt Limite de sessão se aproxima
+            B->>X: Solicita parada controlada e handoff
+            X-->>B: Estado e próximos passos
+            B->>A: Encaminha continuidade
+            A-->>B: Resultado da continuidade
+        end
+        X-->>B: Estado ou resultado da etapa
+    else Runtime inicial Claude Code
+        B->>A: Encaminha execução
+        A-->>B: Estado ou resultado
+    end
+    B-->>E: Notifica entrega pronta para revisão
+    E->>E: Revisa código e decide sobre aceite
