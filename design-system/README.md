@@ -2,7 +2,7 @@
 
 **Versão:** 0.1.0 (proposta para revisão)  
 **Escopo:** portfólio pessoal + blog técnico de Rafael Gomides  
-**Status:** protótipo isolado; não modifica a home atual nem a página do Axion
+**Status:** biblioteca visual v0.1 integrada ao portfólio na branch de redesign; a página do Axion permanece independente
 
 Design system dark-first com linguagem de engenharia: legibilidade editorial, hierarquia de informação, acentos verde-pastel e amarelo, tipografia sans com monoespaçada aplicada a contexto técnico.
 
@@ -22,7 +22,7 @@ python3 -m http.server 8000
 
 Nenhuma instalação, bundler ou dependência de JavaScript é necessária para os protótipos. As fontes são carregadas do Google Fonts quando disponíveis, com fallback nativo. O site existente continua funcionando mesmo sem rede.
 
-> **Importante:** GitHub Pages publica a branch configurada, não um PR automaticamente. O catálogo só estará disponível no domínio público depois do merge/deploy. Para revisar o PR agora, execute o servidor local ou abra os arquivos HTML no navegador.
+> **Importante:** GitHub Pages publica a branch configurada, não um PR automaticamente. Para revisar mudanças de um PR, execute o servidor local ou confira seus arquivos no GitHub.
 
 ## Arquitetura da pasta
 
@@ -96,7 +96,7 @@ Os tokens em `tokens/tokens.css` são a fonte de verdade. Não mantenha uma cóp
 4. Executar `node design-system/scripts/validate.mjs`.
 5. Abrir PR; só depois de aprovado integrar o design system na home, blog e páginas.
 
-A página independente do **Axion fica fora do escopo**. A navegação usa `/axion/` como rota **presumida** para demonstração, com base no caminho informado; confirmar a URL exata no ambiente publicado antes da integração definitiva.
+A página independente do **Axion fica fora do escopo**. A navegação usa `/axiom/` como rota **presumida** a partir do nome do repositório `rgomids/axiom`; o endereço publicado não pôde ser confirmado automaticamente e precisa de verificação manual.
 
 ## Critérios de aprovação da v0.1
 
@@ -107,4 +107,17 @@ A página independente do **Axion fica fora do escopo**. A navegação usa `/axi
 - [ ] Acessibilidade e responsividade revisadas
 - [ ] Rota pública correta do Axion confirmada
 
-Este PR não inclui migração para Astro, publicação real de artigos ou alterações no site atual. Esses trabalhos serão etapas posteriores.
+A integração do portfólio consome `design-system/tokens/tokens.css` e `design-system/components/components.css`, adicionando `portfolio.css` (composição de página) e `portfolio.js` (navegação) na raiz. A publicação real de artigos e a eventual migração para Astro permanecem para uma etapa posterior.
+
+## Integração atual do portfólio
+
+O documento `/index.html` importa os dois arquivos canônicos do design system, seguidos de `/portfolio.css` para compor hero, arquitetura, projetos, jornada, experiência e contato. `/portfolio.js` implementa o comportamento do menu responsivo. O CSS legado `/style.css` foi preservado no repositório, mas não é carregado pelo novo portfólio, permitindo comparar ou reverter a apresentação sem perder dados.
+
+```sh
+node design-system/scripts/validate.mjs
+node scripts/validate-portfolio.mjs
+python3 -m http.server 8000
+# abrir http://localhost:8000/
+```
+
+**Escopo:** mesmo conteúdo das seis seções existentes, novo layout e navegação. A implementação de páginas reais do blog não faz parte dessa entrega.
