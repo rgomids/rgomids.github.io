@@ -24,8 +24,8 @@ report(css.includes('.ds-app [hidden]'), 'Hidden elements need explicit display:
 report(css.includes('prefers-reduced-motion'), 'Reduced motion support missing');
 report(css.includes(':focus-visible'), 'Visible focus support missing');
 
-const getToken = (name) => {
-  const match = tokenCss.match(new RegExp(name + '\\s*:\\s*(#[0-9a-f]{6})', 'i'));
+const getToken = (name, css = tokenCss) => {
+  const match = css.match(new RegExp(name + '\\s*:\\s*(#[0-9a-f]{6})', 'i'));
   report(Boolean(match), `Missing color token: ${name}`);
   return match?.[1];
 };
@@ -39,6 +39,8 @@ const contrast = (a, b) => {
   const dark = Math.min(luminance(a), luminance(b));
   return (bright + 0.05) / (dark + 0.05);
 };
+const lightBlock = tokenCss.match(/:root\\[data-theme="light"\\]\\s*\\{([^}]+)\\}/);
+report(Boolean(lightBlock), 'Explicit light palette missing');
 for (const [foreground, background] of [
   ['--ds-color-text', '--ds-color-bg'],
   ['--ds-color-muted', '--ds-color-bg'],
@@ -48,9 +50,12 @@ for (const [foreground, background] of [
   ['--ds-color-accent-contrast', '--ds-color-accent'],
   ['--ds-color-highlight-contrast', '--ds-color-highlight']
 ]) {
-  const fg = getToken(foreground);
-  const bg = getToken(background);
-  if (fg && bg) report(contrast(fg, bg) >= 4.5, `Text contrast below 4.5:1: ${foreground} on ${background}`);
+  for (const [theme, variables] of [['dark', tokenCss.split('/* Explicit light palette.')[0]], ['light', lightBlock?.[1] || '']]) {
+    const fg = getToken(foreground, variables);
+    const bg = getToken(background, variables);
+    if (fg && bg) report(contrast(fg, bg) >= 4.5,
+      `Text contrast below 4.5:1 for ${theme}: ${foreground} on ${background}`);
+  }
 }
 
 for (const page of pages) {
@@ -61,6 +66,10 @@ for (const page of pages) {
   report(/<title>[^<]+<\/title>/i.test(html), `Missing title in ${page}`);
   report(/name="viewport"/i.test(html), `Missing viewport in ${page}`);
   report(html.includes('data-menu-button') && html.includes('data-menu-panel'), `Missing responsive menu contract in ${page}`);
+  report(html.includes('data-theme-toggle'), `Missing theme switch in ${page}`);
+  report(html.includes('../theme/theme.js'), `Missing shared theme controller in ${page}`);
+  report(html.indexOf('../theme/theme.js') < html.indexOf('../tokens/tokens.css'),
+    `Theme init must precede CSS loading in ${page}`);
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
   for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
     const href = match[1];
@@ -81,6 +90,11 @@ for (const page of pages) {
 report(read('preview/blog.html').includes('data-post-search'), 'Blog search UI missing');
 report(read('preview/blog.html').includes('data-post-filter'), 'Blog filter UI missing');
 try { new Script(previewJs); } catch (error) { failures.push('Invalid preview JavaScript: ' + error.message); }
+const themeJs = read('theme/theme.js');
+try { new Script(themeJs); } catch (error) { failures.push('Invalid shared theme script: ' + error.message); }
+report(themeJs.includes('prefers-color-scheme: dark'), 'System appearance support missing');
+report(themeJs.includes('localStorage'), 'Persistent appearance preference missing');
+report(componentsCss.includes('.ds-theme-toggle'), 'Shared theme control styles missing');
 
 if (failures.length) {
   console.error(`Design system checks failed (${failures.length}):`);
