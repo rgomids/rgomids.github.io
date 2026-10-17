@@ -99,7 +99,18 @@ flowchart LR
     B --> C["Grok Bot"]
 \`\`\`
 
-O renderizador opcional `/blog-mermaid.js` aceita tanto cercas Markdown `mermaid` quanto blocos HTML nativos `<pre class="mermaid">...</pre>`. O primeiro artigo usa os blocos nativos para evitar conflito com o destaque de sintaxe do Jekyll/Rouge. O JavaScript converte apenas os diagramas encontrados, usa uma versão fixa `mermaid@11.4.1`, tema escuro e `securityLevel: strict`, com uma CDN de contingência. Se o carregamento ou o diagrama falhar, o código-fonte continua legível.
+### Publicação confiável: SVG no repositório
+
+Os diagramas não precisam carregar Mermaid no navegador. Os arquivos `.mmd` ficam em `diagrams/` e são compilados para SVG usando `@mermaid-js/mermaid-cli@11.17.0`. O workflow `.github/workflows/render-article-diagrams.yml` executa a geração quando as fontes de diagrama mudam em uma branch diferente da `main` e comita os SVGs gerados na mesma branch.
+
+No primeiro artigo, os arquivos são:
+
+- `diagrams/article-chatgpt-architecture.mmd` → `assets/artigos/chatgpt-como-camada-de-preparacao/architecture.svg`
+- `diagrams/article-chatgpt-sequence.mmd` → `assets/artigos/chatgpt-como-camada-de-preparacao/sequence.svg`
+
+A página inclui um painel com imagem SVG, aba **Código**, botão **Copiar código** e link para o arquivo Mermaid original. A imagem aparece mesmo com JavaScript desabilitado; `blog-mermaid.js` cuida **apenas dos controles de interface**.
+
+Para adicionar diagramas a outro artigo, use o mesmo padrão: versionar o arquivo `.mmd`, definir sua saída no workflow, gerar/commitar o SVG na branch, inserir a imagem e o bloco de código fonte do diagrama no artigo. No PR, confirme os arquivos SVG no diff e que o build Jekyll os inclui em `_site/`. Não dependa apenas de uma cerca \`\`\`mermaid para exibir diagramas em produção.
 
 **Espaçamento editorial:** cada parágrafo do texto deve ser separado do seguinte por **uma linha em branco no Markdown**. Uma quebra de linha simples não inicia um novo parágrafo no Jekyll. Coloque também linhas em branco antes/depois de títulos, listas, blocos de código e diagramas. Não use elementos vazios ou múltiplas quebras artificiais de HTML para criar espaçamento: o estilo do blog cuida disso.
 
