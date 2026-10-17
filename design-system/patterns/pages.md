@@ -7,7 +7,7 @@
 /projetos/             Projetos e estudos de caso
 /artigos/              Lista editorial
 /artigos/{slug}/       Artigo
-/axion/                Link para projeto independente — rota a confirmar
+/axiom/                Link para projeto independente — rota a confirmar
 ```
 
 Esta árvore é **proposta**, não representa rotas já implementadas. Não criar ou modificar arquivos dentro do projeto Axion.
@@ -62,4 +62,4 @@ Manter o GitHub Pages. Avaliar Astro para geração estática e Markdown/MDX na 
 
 ## Axion
 
-Foi informado que o projeto já está hospedado sob o mesmo domínio. O caminho `/axion/` usado no protótipo é **presumido**, não validado tecnicamente. Antes da implantação, confirmar a URL efetiva, incluindo grafia e maiúsculas/minúsculas. A página existente permanece intocada.
+Foi informado que o projeto já está hospedado sob o mesmo domínio. O caminho `/axiom/` usado no protótipo e no portfólio é **presumido** a partir do nome do repositório, não validado tecnicamente. Antes da implantação, confirmar a URL efetiva, incluindo grafia e maiúsculas/minúsculas. A página existente permanece intocada.
