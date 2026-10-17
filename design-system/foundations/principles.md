@@ -2,7 +2,7 @@
 
 ## Identidade
 
-**Dark Engineering:** portfólio de engenharia de software com expressão técnica, caráter editorial e futurismo discreto.
+**Dark Engineering:** portfólio de engenharia de software com expressão técnica, caráter editorial e futurismo discreto, agora com opção de leitura clara no blog.
 
 Inspirado na precisão dos sites técnicos minimalistas, na leitura confortável de blogs editoriais e em interfaces modernas sem excesso visual. Não copiar layouts ou assets de terceiros.
 
@@ -10,7 +10,7 @@ Inspirado na precisão dos sites técnicos minimalistas, na leitura confortável
 
 1. **Conteúdo primeiro:** arquitetura, problemas, resultados e raciocínio mais visíveis que efeitos.
 2. **Clareza de interação:** links parecem links; botões têm hierarquia evidente; foco e hover distinguíveis.
-3. **Dark-first, não neon-first:** verde-pastel identifica ações; amarelo destaca uma pequena área por vez.
+3. **Dark-first, não neon-first:** verde-pastel identifica ações; amarelo destaca uma pequena área por vez. No light mode, acentos tornam-se mais escuros para manter contraste.
 4. **Monoespaçada sem saturação:** reservar para metadados, labels, código, navegação e indicadores.
 5. **Componentes por responsabilidade:** cards não devem carregar lógica de filtros, tema ou navegação.
 6. **Portfólio = blog:** mesmo header, footer, tokens, largura e linguagem visual.
