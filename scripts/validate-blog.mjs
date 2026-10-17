@@ -75,9 +75,24 @@ for (const filename of postFiles) {
   const yaml = frontmatter[1];
   check(!/## Notas editoriais|Rascunho editorial|discussion-urls=|<mention-page/i.test(post),
     'Editorial annotations leaked into published article: ' + filename);
-  if (post.includes('```mermaid')) {
+  const mermaidBlocks = (post.match(/<pre class="mermaid">/g) || []).length +
+    (post.match(/```mermaid/g) || []).length;
+  if (mermaidBlocks > 0) {
     check(exists('blog-mermaid.js'), 'Mermaid renderer missing for: ' + filename);
     check(read('_layouts/article.html').includes('blog-mermaid.js'), 'Mermaid layout script missing');
+    const renderer = read('blog-mermaid.js');
+    check(renderer.includes("document.querySelectorAll('.blog-article-body .blog-diagram pre.mermaid')"),
+      'Native Mermaid diagram selector missing');
+    check(renderer.includes('language-mermaid'), 'Fenced Markdown Mermaid compatibility missing');
+  }
+  if (filename.includes('chatgpt-como-camada-de-preparacao')) {
+    const articleBody = post.slice(frontmatter[0].length);
+    const paragraphs = articleBody.split(/\\n\\s*\\n/).filter(block =>
+      /^[A-Za-zÀ-ÿ“‘]/.test(block.trim()));
+    check(paragraphs.length >= 40, 'Notion paragraph breaks lost: ' + paragraphs.length);
+    check(mermaidBlocks === 2, 'First article must contain two diagrams');
+    check(articleBody.includes('flowchart LR') && articleBody.includes('sequenceDiagram'),
+      'Expected Mermaid diagram definitions missing');
   }
   for (const field of ['title', 'description', 'date', 'tags']) {
     check(new RegExp('^' + field + ':\\s*\\S+', 'm').test(yaml), 'Missing field ' + field + ' in ' + filename);
