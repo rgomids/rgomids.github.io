@@ -2,7 +2,7 @@
 
 **Versão:** 0.2.0 (suporte a light/dark mode)  
 **Escopo:** portfólio pessoal + blog técnico de Rafael Gomides  
-**Status:** biblioteca visual v0.1 integrada ao portfólio na branch de redesign; a página do Axion permanece independente
+**Status:** biblioteca visual v0.1 integrada ao portfólio na branch de redesign; a página do Axiom permanece independente
 
 Design system dark-first, com modo claro opcional e linguagem de engenharia: legibilidade editorial, hierarquia de informação, acentos verde-pastel e amarelo, tipografia sans com monoespaçada aplicada a contexto técnico.
 
@@ -96,7 +96,7 @@ Os tokens em `tokens/tokens.css` são a fonte de verdade. Não mantenha uma cóp
 4. Executar `node design-system/scripts/validate.mjs`.
 5. Abrir PR; só depois de aprovado integrar o design system na home, blog e páginas.
 
-A página independente do **Axion fica fora do escopo**. A navegação usa `/axiom/` como rota **presumida** a partir do nome do repositório `rgomids/axiom`; o endereço publicado não pôde ser confirmado automaticamente e precisa de verificação manual.
+A página independente do **Axiom fica fora do escopo**. A navegação usa `/axiom/` como rota **presumida** a partir do nome do repositório `rgomids/axiom`; o endereço publicado não pôde ser confirmado automaticamente e precisa de verificação manual.
 
 ## Critérios de aprovação da v0.1
 
@@ -105,7 +105,7 @@ A página independente do **Axion fica fora do escopo**. A navegação usa `/axi
 - [ ] Cards de projetos e lista de artigos aprovados
 - [ ] Experiência de leitura longa aprovada
 - [ ] Acessibilidade e responsividade revisadas
-- [ ] Rota pública correta do Axion confirmada
+- [ ] Rota pública correta do Axiom confirmada
 
 A integração do portfólio consome `design-system/tokens/tokens.css` e `design-system/components/components.css`, adicionando `portfolio.css` (composição de página) e `portfolio.js` (navegação) na raiz. A publicação real de artigos e a eventual migração para Astro permanecem para uma etapa posterior.
 
@@ -133,6 +133,6 @@ O tema escuro original permanece como a base do design system. Os tokens claros 
 </button>
 ```
 
-**Comportamento:** sem preferência salva, segue `prefers-color-scheme`; clique alterna claro/escuro e salva o modo escolhido em `localStorage` (`rgomids-color-theme`). Caso armazenamento ou JavaScript esteja indisponível, o site permanece utilizável. O controle só aparece depois que o JS inicializa. A preferência vale para todas as páginas que carregam o controlador (no momento, o blog e as demonstrações). O portfólio principal permanece no layout escuro, sem controle de tema nesta entrega, e a página do Axion permanece independente.
+**Comportamento:** sem preferência salva, segue `prefers-color-scheme`; clique alterna claro/escuro e salva o modo escolhido em `localStorage` (`rgomids-color-theme`). Caso armazenamento ou JavaScript esteja indisponível, o site permanece utilizável. O controle só aparece depois que o JS inicializa. A preferência vale para todas as páginas que carregam o controlador (no momento, o blog e as demonstrações). O portfólio principal permanece no layout escuro, sem controle de tema nesta entrega, e a página do Axiom permanece independente.
 
 Use os tokens semânticos `--ds-color-*` em vez de cores fixas nas superfícies do blog. Para cada novo componente, verifique os dois temas. Ilustrações SVG Mermaid mantêm sua paleta escura própria em ambos os modos por legibilidade.
