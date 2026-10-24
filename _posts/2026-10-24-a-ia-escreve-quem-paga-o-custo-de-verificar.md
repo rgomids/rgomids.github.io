@@ -90,7 +90,7 @@ O [relatório DORA 2025](https://dora.dev/research/2025/dora-report/) chega a um
     <button type="button" class="blog-diagram__tab" data-diagram-mode="visual" aria-pressed="true">Diagrama</button>
     <button type="button" class="blog-diagram__tab" data-diagram-mode="code" aria-pressed="false">Código</button>
     <button type="button" class="blog-diagram__copy" data-diagram-copy>Copiar código</button>
-    
+    <span class="blog-diagram__status" data-diagram-status role="status" aria-live="polite"></span>
   </div>
   <div class="blog-diagram__visual" data-diagram-panel="visual" tabindex="0" role="region" aria-label="Diagrama rolável — use rolagem horizontal se necessário">
     <img src="/assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/producao-verificacao.svg" loading="lazy" decoding="async" alt="Fluxograma: a IA produz alternativas, verificações objetivas e julgamentos contextuais orientam a decisão de aceitar, corrigir ou investigar">
@@ -101,7 +101,7 @@ O [relatório DORA 2025](https://dora.dev/research/2025/dora-report/) chega a um
     B --&gt; C[&quot;Verificações objetivas&lt;br&gt;Testes, requisitos e contratos&quot;]
     B --&gt; D[&quot;Julgamento contextual&lt;br&gt;Produto, arquitetura e escopo&quot;]
     C --&gt; E[&quot;Aceitar, corrigir ou investigar&quot;]
-    D --&gt; E`</pre>
+    D --&gt; E</code></pre>
   </div>
   <figcaption>Produção e verificação. <a href="/diagrams/article-a-ia-escreve-quem-paga-o-custo-de-verificar-producao-verificacao.mmd" download>Baixar fonte Mermaid</a>.</figcaption>
 </figure>
@@ -151,7 +151,7 @@ A mudança foi também uma correção de fronteira de responsabilidade: **o Axio
     <button type="button" class="blog-diagram__tab" data-diagram-mode="visual" aria-pressed="true">Diagrama</button>
     <button type="button" class="blog-diagram__tab" data-diagram-mode="code" aria-pressed="false">Código</button>
     <button type="button" class="blog-diagram__copy" data-diagram-copy>Copiar código</button>
-    
+    <span class="blog-diagram__status" data-diagram-status role="status" aria-live="polite"></span>
   </div>
   <div class="blog-diagram__visual" data-diagram-panel="visual" tabindex="0" role="region" aria-label="Diagrama rolável — use rolagem horizontal se necessário">
     <img src="/assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/runtime-admission.svg" loading="lazy" decoding="async" alt="Diagrama de sequência comparando o bloqueio por Capability Proof da ADR-0025 com o despacho autorizado e diagnóstico da ADR-0032">
@@ -177,7 +177,7 @@ A mudança foi também uma correção de fronteira de responsabilidade: **o Axio
     else Falha ou efeito incerto
         R--&gt;&gt;A: Falha ou estado incerto
         A--&gt;&gt;P: Diagnóstico e recuperação segura
-    end`</pre>
+    end</code></pre>
   </div>
   <figcaption>Certificação e execução de Runtime no Axiom. <a href="/diagrams/article-a-ia-escreve-quem-paga-o-custo-de-verificar-runtime-admission.mmd" download>Baixar fonte Mermaid</a>.</figcaption>
 </figure>
