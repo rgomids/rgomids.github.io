@@ -1,0 +1,21 @@
+sequenceDiagram
+    actor P as Responsável
+    participant A as Axiom
+    participant C as Certificação
+    participant R as Runtime
+    Note over A,R: Antes - ADR-0025
+    P->>A: Solicita execução
+    A->>C: Exige Capability Proof
+    C-->>A: Evidência ausente
+    A-->>P: capability_unknown
+    Note over A,R: Depois - ADR-0032
+    P->>A: Solicita execução
+    A->>A: Verifica política e autorização
+    A->>R: Tenta execução autorizada
+    alt Resultado válido
+        R-->>A: Resultado
+        A-->>P: Evidência da execução
+    else Falha ou efeito incerto
+        R-->>A: Falha ou estado incerto
+        A-->>P: Diagnóstico e recuperação segura
+    end

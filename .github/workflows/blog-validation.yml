@@ -100,3 +100,38 @@ jobs:
             }
             console.log("Rendered HTML verified: " + diagrams + " diagrams, " + paragraphs + " paragraphs");
           '
+
+          # Validate the newly published ART-3 article, not just the example article.
+          test -f _site/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/index.html
+          test -f _site/assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/producao-verificacao.svg
+          test -f _site/assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/runtime-admission.svg
+          test -f _site/diagrams/article-a-ia-escreve-quem-paga-o-custo-de-verificar-producao-verificacao.mmd
+          test -f _site/diagrams/article-a-ia-escreve-quem-paga-o-custo-de-verificar-runtime-admission.mmd
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+            const slug = "a-ia-escreve-quem-paga-o-custo-de-verificar";
+            const page = readFileSync("_site/artigos/" + slug + "/index.html", "utf8");
+            const index = readFileSync("_site/artigos/index.html", "utf8");
+            const feed = readFileSync("_site/feed.xml", "utf8");
+            const sitemap = readFileSync("_site/sitemap.xml", "utf8");
+            const count = (page.match(/<p(?:\s[^>]*)?>/g) || []).length;
+            const viewers = (page.match(/data-diagram-widget/g) || []).length;
+            const h2 = (page.match(/<h2\b/g) || []).length;
+            const h3 = (page.match(/<h3\b/g) || []).length;
+            const refs = page.includes("Referências e evidências");
+            const conclusion = page.includes("o futuro do engenheiro não pode ser uma fila infinita");
+            const tail = page.includes("release v0.21.1");
+            console.log("ART-3 diagnostic:", JSON.stringify({ paragraphs:count, h2, h3, refs, conclusion, tail, length:page.length }));
+            if (count < 30 || h2 < 9 || h3 < 5 || viewers !== 2 || !refs || !conclusion || !tail) throw Error("ART-3 invalid structural content: paragraphs=" + count + " h2=" + h2 + " h3=" + h3 + " viewers=" + viewers);
+            if (!page.includes("data-diagram-mode=\"code\"") || !page.includes("data-diagram-copy")) throw Error("ART-3 viewer controls absent");
+            if (/discussion-urls|Nota editorial:|Rascunho integral|Notas editoriais/.test(page)) throw Error("Editorial draft metadata leaked");
+            for (const name of ["producao-verificacao", "runtime-admission"]) {
+              const src = readFileSync("_site/diagrams/article-" + slug + "-" + name + ".mmd", "utf8").trim();
+              const svg = readFileSync("_site/assets/artigos/" + slug + "/" + name + ".svg", "utf8");
+              if (!svg.includes("<svg") || !svg.includes("</svg>")) throw Error("Invalid SVG " + name);
+              if (!page.includes(name + ".svg") || !page.includes("article-" + slug + "-" + name + ".mmd")) throw Error("Missing viewer link " + name);
+              if (!src.startsWith(name === "producao-verificacao" ? "flowchart" : "sequenceDiagram")) throw Error("Wrong source " + name);
+            }
+            if (![index, feed, sitemap].every(v => v.includes(slug))) throw Error("ART-3 not indexed in blog/feed/sitemap");
+            console.log("ART-3 route, metadata, paragraphs, 2 SVG viewers, sources, RSS and sitemap verified: " + count + " paragraphs");
+          '

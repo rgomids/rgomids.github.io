@@ -34,12 +34,17 @@ jobs:
           npx mmdc -i diagrams/article-chatgpt-sequence.mmd -o assets/artigos/chatgpt-como-camada-de-preparacao/sequence.svg -c diagrams/theme.json -p diagrams/puppeteer.json -b '#151b18'
           test "$(grep -c '<svg' assets/artigos/chatgpt-como-camada-de-preparacao/architecture.svg)" -ge 1
           test "$(grep -c '<svg' assets/artigos/chatgpt-como-camada-de-preparacao/sequence.svg)" -ge 1
+          mkdir -p assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar
+          npx mmdc -i diagrams/article-a-ia-escreve-quem-paga-o-custo-de-verificar-producao-verificacao.mmd -o assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/producao-verificacao.svg -c diagrams/theme.json -p diagrams/puppeteer.json -b '#151b18'
+          npx mmdc -i diagrams/article-a-ia-escreve-quem-paga-o-custo-de-verificar-runtime-admission.mmd -o assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/runtime-admission.svg -c diagrams/theme.json -p diagrams/puppeteer.json -b '#151b18'
+          test "$(grep -c '<svg' assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/producao-verificacao.svg)" -ge 1
+          test "$(grep -c '<svg' assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/runtime-admission.svg)" -ge 1
       - name: Commit verified SVG assets to PR branch
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/artigos/chatgpt-como-camada-de-preparacao/*.svg
+          git add assets/artigos/chatgpt-como-camada-de-preparacao/*.svg assets/artigos/a-ia-escreve-quem-paga-o-custo-de-verificar/*.svg
           if ! git diff --cached --quiet; then
             git commit -m "build(blog): generate static Mermaid SVG assets"
             git push origin "HEAD:${GITHUB_REF_NAME}"
