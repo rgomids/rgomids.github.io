@@ -116,13 +116,13 @@ jobs:
             const sitemap = readFileSync("_site/sitemap.xml", "utf8");
             const count = (page.match(/<p(?:\s[^>]*)?>/g) || []).length;
             const viewers = (page.match(/data-diagram-widget/g) || []).length;
-            const h2 = (page.match(/<h2\\b/g) || []).length;
-            const h3 = (page.match(/<h3\\b/g) || []).length;
+            const h2 = (page.match(/<h2\b/g) || []).length;
+            const h3 = (page.match(/<h3\b/g) || []).length;
             const refs = page.includes("Referências e evidências");
-            const conclusion = page.includes("O futuro do engenheiro não pode ser uma fila infinita");
+            const conclusion = page.includes("o futuro do engenheiro não pode ser uma fila infinita");
             const tail = page.includes("release v0.21.1");
             console.log("ART-3 diagnostic:", JSON.stringify({ paragraphs:count, h2, h3, refs, conclusion, tail, length:page.length }));
-            if (count < 45 || viewers !== 2) throw Error("ART-3 invalid: paragraphs=" + count + " diagrams=" + viewers);
+            if (count < 30 || h2 < 9 || h3 < 5 || viewers !== 2 || !refs || !conclusion || !tail) throw Error("ART-3 invalid structural content: paragraphs=" + count + " h2=" + h2 + " h3=" + h3 + " viewers=" + viewers);
             if (!page.includes("data-diagram-mode=\"code\"") || !page.includes("data-diagram-copy")) throw Error("ART-3 viewer controls absent");
             if (/discussion-urls|Nota editorial:|Rascunho integral|Notas editoriais/.test(page)) throw Error("Editorial draft metadata leaked");
             for (const name of ["producao-verificacao", "runtime-admission"]) {
